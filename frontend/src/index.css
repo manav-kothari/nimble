@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: #3f3f3f;
+  }
+}
+
+@layer utilities {
+  .transform-img {
+    transform:   translateX(-1rem);
+  }
+
+  .font-inherit {
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .custom-border {
+    border: none;
+    border: 1px solid #ccc;
+  }
+
+  .cart-item-border {
+    border-bottom: 2px solid #8a2b06;
+  }
+}
+
+@layer components {
+  .cart-btn {
+    @apply font-inherit cursor-pointer bg-transparent custom-border py-2 px-8 rounded-3xl ml-4 hover:bg-yellow-980 hover:border-yellow-980 hover:text-white active:bg-yellow-980 active:border-yellow-980 active:text-white transition-colors;
+  }
+
+  .cart-item-btn {
+    @apply font-inherit font-bold text-xl text-yellow-750 border border-solid border-yellow-750 w-12 text-center rounded-md bg-transparent cursor-pointer ml-4 m-1 hover:bg-yellow-750 hover:text-white active:bg-yellow-750 active:text-white transition-colors;
+  }
+
+  .checkout-btn {
+    @apply font-inherit text-yellow-980 cursor-pointer bg-transparent border-none rounded-3xl py-2 px-8 hover:bg-red-150 active:bg-red-150 transition-colors;
+  }
+
+  .spinner {
+    @apply h-12 w-12 animate-rotate text-gray-750;
+  }
+}
+
+.btn,
+.jumbotron,
+.nav :hover {
+  border-radius: 0px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow-x: hidden;
+}
+
+footer {
+  position: relative;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 50vh;
+  object-fit: contain;
+}
+
+.cards {
+  border-radius: 4px;
+
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+}
+
+/* .cards:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+} */
+
+.social-icons a {
+  padding: 1rem;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+/* .social-icons {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+} */
+
+#fb {
+  color: #4267b2;
+}
+
+#insta {
+  color: #fb3958;
+}
+
+#twitter {
+  color: #1da1f2;
+}
+
+#maps {
+  color: #ea4335;
+}
+
+#whatsapp {
+  color: #25d366;
+}
+
+#gmail {
+  color: #fb3958;
+}
+.search {
+  display: inline;
+}
+
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel img {
+  height: 325px;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.subtext {
+  font-size: 7px;
+  padding: 0;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.letter {
+  letter-spacing: normal;
+}
+
+.menu-body {
+  max-width: 680px;
+  margin: 10px auto;
+  display: block;
+  color: rgb(92, 92, 92);
+}
+
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.menu-section-title {
+  font-family: georgia;
+  font-size: 50px;
+  display: block;
+  font-weight: normal;
+  margin: 20px 0;
+  text-align: Center;
+}
+
+.menu-item {
+  margin: 0;
+  font-size: 18px;
+}
+
+.menu-item-name {
+  font-family: helvetica;
+  font-weight: bold;
+  border-bottom: 2px dotted rgb(213, 213, 213);
+}
+
+.menu-item-user {
+  font-size: 17px;
+  color: rgb(92, 92, 92);
+  border-bottom: 2px dotted rgb(213, 213, 213);
+}
+
+.menu-item-description {
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.5em;
+}
+
+.menu-item-price {
+  float: right;
+  font-weight: bold;
+  font-family: arial;
+  margin-top: -26px;
+}
+.header {
+  margin-top: -15px;
+  margin-bottom: 7px;
+}
+
+.page {
+  height: 100vh;
+}
+
+.heading {
+  letter-spacing: 0.5px;
+}
+
+.filter {
+  font-size: 15px;
+}
+
+.filterdrop {
+  padding: 0 0.9rem;
+}
+
+.headerheading {
+  font-size: 1.3rem;
+}
