@@ -168,6 +168,16 @@ export const getUser = (userId, token) => {
     .catch((err) => console.log(err));
 };
 
+export const getAUser = (userId) => {
+  return fetch(`${API}/getuser/${userId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const updateUser = (userId, token, user) => {
   return fetch(`${API}/user/${userId}`, {
     method: "PUT",

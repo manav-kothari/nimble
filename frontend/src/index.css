@@ -260,3 +260,8 @@ footer {
 .headerheading {
   font-size: 1.3rem;
 }
+
+.logo{
+  height: 50px;
+  width: 100px;
+}

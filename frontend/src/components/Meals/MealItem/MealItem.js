@@ -23,7 +23,7 @@ const MealItem = (props) => {
         <div className="italic">{props.description}</div>
       </div>
       <div>
-        <div className=" font-bold text-xl text-yellow-550">{price}</div>
+        <div className=" font-bold text-xl text-black-550">{price}</div>
         <MealItemForm id={props.id} onAddToCart={handleAddToCart} />
       </div>
     </li>
