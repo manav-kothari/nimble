@@ -5,6 +5,7 @@ import {
   authenticate,
   isAuthenticated,
 } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -62,16 +63,18 @@ const Signin = () => {
 
   const errorMessage = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
+      <>
+        <div className="row">
+          <div className="col-md-6 offset-sm-3 text-left">
+            <div
+              className="alert alert-danger"
+              style={{ display: error ? "" : "none" }}
+            >
+              {error}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   };
 
@@ -123,6 +126,8 @@ const Signin = () => {
 
   return (
     <>
+      <Menu />
+      <h3 className="text-center text-capitalize mt-4">Welcome Back! Signin</h3>
       <div className="p-4 page">
         <container>
           {loadingMessage()}
