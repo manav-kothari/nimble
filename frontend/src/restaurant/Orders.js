@@ -1,7 +1,161 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Table, Pagination } from "react-bootstrap";
+import { getAllOrders, isAuthenticated } from "../apicalls/restaurantapicalls";
+import { LinkContainer } from "react-router-bootstrap";
+import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
 
-const Orders = () => {
-  return <h1 className="text-center">All Orders</h1>;
+const Orders = ({ match }) => {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState("");
+
+  // const pageNumber = match.params.pageNumber || 1;
+  const pageNumber = 1;
+  const { user, token } = isAuthenticated();
+
+  const preload = (pageNumber) => {
+    getAllOrders(user._id, token, pageNumber).then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setOrders(data.order);
+        console.log(data);
+
+        setPage(data.page);
+        setPages(data.pages);
+        setLoading(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    preload(pageNumber);
+    // eslint-disable-next-line
+  }, [pageNumber]);
+
+  const loadingMessage = () => {
+    return (
+      <div className="aler alert-info text-center blink_me p-4 my-4">
+        <h2>Loading...</h2>
+      </div>
+    );
+  };
+  const errorMessage = () => {
+    if (error) {
+      return (
+        <h4 className="alert alert-danger align-center text-center">
+          Operation Failed!
+        </h4>
+      );
+    }
+  };
+
+  return (
+    <>
+      {loading ? (
+        loadingMessage()
+      ) : error ? (
+        errorMessage()
+      ) : (
+        <div className="page2">
+          <div className="p-3">
+            <Link to="/myprofile" className="btn btn-md btn-dark mb-3">
+              Go Back
+            </Link>
+            <div className="container">
+              <h3 className="text-dark text-center p-2 headingalt">
+                All Orders :
+              </h3>
+            </div>
+            <Table
+              striped
+              bordered
+              responsive
+              hover
+              variant="light"
+              className="table-sm text-dark"
+            >
+              <thead className="">
+                <tr className="text-center">
+                  <th>Cuomer's Name</th>
+                  <th>Amount</th>
+                  <th>Product(s)</th>
+                  <th>Instruction</th>
+                  <th>Table Number</th>
+                  <th>Cuomer's Number</th>
+                  <th>Timestamp</th>
+                  <th>Order ID</th>
+                  <th>Mobile Number</th>
+                </tr>
+              </thead>
+
+              <tbody className="text-center text-dark">
+                {orders.map((order) => (
+                  <tr key={order._id}>
+                    <td>{order.user.name}</td> <td>₹{order.amount / 100}</td>
+                    <td>
+                      {order.products.map((product, index) => {
+                        return (
+                          <a
+                            href={`/product/${product._id}`}
+                            className="text-dark "
+                          >
+                            <u>{product.name}</u> |{" "}
+                          </a>
+                        );
+                      })}
+                    </td>
+                    <td>{order.instruction}</td>
+                    <td>{order.branch}</td>
+                    <td>{order.number}</td>
+                    <td>{order.timestamp}</td>
+                    <td>{order._id}</td>
+                    <td>{order.transaction_id}</td>
+                    <td>{order.user._id}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+          {pages > 1 && (
+            <div className="center ">
+              <Pagination className="my-4 font-weight-bold " pagination>
+                <div className="">
+                  <LinkContainer to={`/admin/allorders/page/${page - 1}`}>
+                    <Pagination.Item
+                      disabled={page === 1}
+                      className=" text-capitalize font-weight-bold "
+                    >
+                      <HiArrowCircleLeft size="50px" className="text-dark" />
+                    </Pagination.Item>
+                  </LinkContainer>
+                </div>
+                <h3 className="mt-3 mx-3">
+                  <strong>
+                    {page}/{pages}
+                  </strong>
+                </h3>
+                <div className="">
+                  <LinkContainer to={`/admin/allorders/page/${page + 1}`}>
+                    <Pagination.Item
+                      disabled={page === pages}
+                      className=" text-capitalize font-weight-bold "
+                    >
+                      <HiArrowCircleRight size="50px" className="text-dark" />
+                    </Pagination.Item>
+                  </LinkContainer>
+                </div>
+              </Pagination>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Orders;

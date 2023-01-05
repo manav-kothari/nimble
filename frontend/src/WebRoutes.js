@@ -4,6 +4,7 @@ import App from "./App";
 import Signin from "./auth/Signin";
 import Signup from "./auth/Signup";
 import Footer from "./components/Footer/Footer";
+import AddCategory from "./restaurant/AddCategory";
 import AddProduct from "./restaurant/AddProduct";
 import AdminDashboard from "./restaurant/AdminDashboard";
 import ManageProducts from "./restaurant/ManageProducts";
@@ -21,6 +22,7 @@ const WebRoutes = () => {
         <Route path="/signin" element={<Signin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/orders/:userId" element={<Orders />} />
+        <Route path="/admin/create/category" element={<AddCategory />} />
         <Route path="/admin/create/product" element={<AddProduct />} />
         <Route path="/admin/products" element={<ManageProducts />} />
         <Route

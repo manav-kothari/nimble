@@ -203,3 +203,62 @@ export const getUsers = () => {
     })
     .catch((err) => console.log(err));
 };
+
+//update logo
+// export const updateProduct = (productId, userId, token, product) => {
+//   return fetch(`${API}/product/${productId}/${userId}`, {
+//     method: "PUT",
+//     headers: {
+//       Accept: "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+
+//     body: product,
+//   })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .catch((err) => console.log(err));
+// };
+/****** Orders ******/
+
+export const getAllOrders = (userId, token, pageNumber) => {
+  return fetch(`${API}/order/all/${userId}?pageNumber=${pageNumber}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//category calls
+export const createCategory = (userId, token, category) => {
+  return fetch(`${API}/category/create/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(category),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//get all categories
+export const getCategories = () => {
+  return fetch(`${API}/categories`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

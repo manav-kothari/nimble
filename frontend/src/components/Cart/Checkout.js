@@ -6,49 +6,49 @@ const isFiveChars = (value) => value.length === 5;
 const Checkout = (props) => {
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
-    street: true,
-    postalCode: true,
-    city: true,
+    number: true,
+    tableNumber: true,
+    description: true,
   });
 
   const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalCodeInputRef = useRef();
-  const cityInputRef = useRef();
+  const numberInputRef = useRef();
+  const tableNumberInputRef = useRef();
+  const descriptionInputRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const enteredName = nameInputRef.current.value;
-    const enteredStreet = streetInputRef.current.value;
-    const enteredPostalCode = postalCodeInputRef.current.value;
-    const enteredCity = cityInputRef.current.value;
+    const enteredNumber = numberInputRef.current.value;
+    const enteredTableNumber = tableNumberInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
 
     const enteredNameIsValid = !isEmpty(enteredName);
-    const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
-    const enteredCityIsValid = !isEmpty(enteredCity);
+    const enteredNumberIsValid = !isEmpty(enteredNumber);
+    const enteredTableNumberIsValid = !isEmpty(enteredTableNumber);
+    const enteredDescriptionIsValid = !isEmpty(enteredDescription);
 
     setFormInputsValidity({
       name: enteredNameIsValid,
-      Street: enteredStreetIsValid,
-      postalCode: enteredPostalCodeIsValid,
-      city: enteredCityIsValid,
+      number: enteredNumberIsValid,
+      tableNumber: enteredTableNumberIsValid,
+      description: enteredDescriptionIsValid,
     });
 
     const formIsValid =
       enteredNameIsValid &&
-      enteredStreetIsValid &&
-      enteredCityIsValid &&
-      enteredPostalCodeIsValid;
+      enteredNumberIsValid &&
+      enteredDescriptionIsValid &&
+      enteredTableNumberIsValid;
 
     if (!formIsValid) return;
 
     props.onSubmit({
       name: enteredName,
-      street: enteredStreet,
-      postalCode: enteredPostalCode,
-      city: enteredCity,
+      number: enteredNumber,
+      tableNumber: enteredTableNumber,
+      description: enteredDescription,
     });
   };
   return (
@@ -75,61 +75,63 @@ const Checkout = (props) => {
       <div className="mb-2">
         <label
           className={`font-bold mb-1 block ${
-            formInputsValidity.street ? "" : "text-red-450"
+            formInputsValidity.number ? "" : "text-red-450"
           }`}
-          htmlFor="street"
+          htmlFor="number"
         >
           Mobile Number
         </label>
         <input
           className={`font-inherit custom-border rounded w-80 max-w-full ${
-            formInputsValidity.street ? "" : "border-red-550 bg-red-75"
+            formInputsValidity.number ? "" : "border-red-550 bg-red-75"
           }`}
-          type="text"
-          id="street"
-          ref={streetInputRef}
+          type="numeric"
+          id="number"
+          ref={numberInputRef}
         />
-        {!formInputsValidity.street && <p>Please enter a valid street!</p>}
+        {!formInputsValidity.number && <p>Please enter a valid number!</p>}
       </div>
       <div className="mb-2">
         <label
           className={`font-bold mb-1 block ${
-            formInputsValidity.postalCode ? "" : "text-red-450"
+            formInputsValidity.tableNumber ? "" : "text-red-450"
           }`}
-          htmlFor="postal"
+          htmlFor="table"
         >
           Table Number
         </label>
         <input
           className={`font-inherit custom-border rounded w-80 max-w-full ${
-            formInputsValidity.postalCode ? "" : "border-red-550 bg-red-75"
+            formInputsValidity.tableNumber ? "" : "border-red-550 bg-red-75"
           }`}
-          type="text"
-          id="postal"
-          ref={postalCodeInputRef}
+          type="nummeric"
+          id="table"
+          ref={tableNumberInputRef}
         />
-        {!formInputsValidity.postalCode && (
-          <p>Please enter a valid postal code (5 characters long)!</p>
+        {!formInputsValidity.tableNumber && (
+          <p>Please enter a valid table Number</p>
         )}
       </div>
       <div className="mb-2">
         <label
           className={`font-bold mb-1 block ${
-            formInputsValidity.city ? "" : "text-red-450"
+            formInputsValidity.description ? "" : "text-red-450"
           }`}
-          htmlFor="city"
+          htmlFor="description"
         >
           Instructions
         </label>
         <input
           className={`font-inherit custom-border rounded w-80 max-w-full ${
-            formInputsValidity.city ? "" : "border-red-550 bg-red-75"
+            formInputsValidity.description ? "" : "border-red-550 bg-red-75"
           }`}
           type="text"
-          id="city"
-          ref={cityInputRef}
+          id="description"
+          ref={descriptionInputRef}
         />
-        {!formInputsValidity.city && <p>Please enter a valid city!</p>}
+        {!formInputsValidity.description && (
+          <p>Please enter a valid description!</p>
+        )}
       </div>
       <div className="flex justify-end gap-4">
         <button className="checkout-btn" type="button" onClick={props.onCancel}>

@@ -87,6 +87,19 @@ const ManageProfile = ({ match }) => {
                 value={name}
               />
             </div>
+
+            <div className="form-group my-2">
+              <label className="text-dark">Logo:</label>
+              <a
+                href="/admin/logo"
+                class="btn btn-secondary btn-sm active ml-3"
+                role="button"
+                aria-pressed="true"
+              >
+                Add
+              </a>
+            </div>
+
             <div className="form-group my-2">
               <label className="text-dark">Email:</label>
               <input
@@ -114,7 +127,7 @@ const ManageProfile = ({ match }) => {
                 onClick={onSubmit}
                 className="text-center col-md-12 col-sm-12 btn btn-success my-4 mx-auto"
               >
-                Update
+                Update Details
               </button>
             </Row>
           </form>

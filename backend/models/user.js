@@ -26,7 +26,10 @@ var userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      
+    },
+    photo: {
+      data: Buffer,
+      contentType: String,
     },
     resetToken: String,
     expireToken: Date,

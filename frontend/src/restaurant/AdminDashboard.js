@@ -2,6 +2,7 @@ import React from "react";
 import { signout } from "../apicalls/restaurantapicalls";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import Menu from "../components/Menu";
 
 const AdminDashboard = ({ history }) => {
   // const {
@@ -21,6 +22,22 @@ const AdminDashboard = ({ history }) => {
               className="nav-link text-light text-center bg-primary text-capitalize h5"
             >
               All Orders
+            </Link>
+          </Button>
+          <Button className="list-group-item">
+            <Link
+              to="/admin/create/category"
+              className="nav-link text-light text-center bg-primary text-capitalize h5"
+            >
+              Add Category
+            </Link>
+          </Button>
+          <Button className="list-group-item">
+            <Link
+              to="/admin/cate"
+              className="nav-link text-light text-center bg-primary text-capitalize h5"
+            >
+              Manage Category
             </Link>
           </Button>
           <Button className="list-group-item">
@@ -75,19 +92,22 @@ const AdminDashboard = ({ history }) => {
   };
 
   return (
-    <div className="page">
-      <div className="p-2">
-        <Link to="/" className="btn btn btn-outline-primary">
-          Go to Home Page
-        </Link>
+    <>
+      <Menu />
+      <div className="page2">
+        <div className="p-2">
+          <Link to="/" className="btn btn btn-outline-primary">
+            Go to Home Page
+          </Link>
+        </div>
+        <div className="container p-2">
+          <h4 className="text-dark text-center text-capitalize py-2">
+            Manage all things here
+          </h4>
+          {adminfront()}
+        </div>
       </div>
-      <div className="container p-2">
-        <h4 className="text-dark text-center text-capitalize py-2">
-          Manage all things here
-        </h4>
-        {adminfront()}
-      </div>
-    </div>
+    </>
   );
 };
 

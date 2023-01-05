@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-
+import { API } from "../../backend";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
@@ -25,21 +25,17 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  const handleSubmitOrder = async (userData) => {
+  const handleSubmitOrder = async () => {
     setIsSubmitting(true);
-    await fetch(
-      "https://food-order-d7315-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartContext.items,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    await fetch(`${API}/order/create/`, {
+      method: "POST",
+      body: JSON.stringify({
+        orderedItems: cartContext.items,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     setIsSubmitting(false);
     setDidSubmit(true);
     cartContext.clearCart();

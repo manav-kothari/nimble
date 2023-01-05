@@ -13,6 +13,8 @@ const path = require("path");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
+const logoRoutes = require("./routes/logo");
+const orderRoutes = require("./routes/order");
 
 //DB Connection
 mongoose
@@ -34,6 +36,8 @@ app.use(cors());
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
+app.use("/api", logoRoutes);
+app.use("/api", orderRoutes);
 
 var __dirname = path.resolve();
 
