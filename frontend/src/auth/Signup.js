@@ -9,11 +9,13 @@ const Signup = () => {
     email: "",
     number: "",
     password: "",
+    confirmPassword: "",
     error: "",
     success: false,
   });
 
-  const { name, email, number, password, error, success } = values;
+  const { name, email, number, password, confirmPassword, error, success } =
+    values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -93,13 +95,17 @@ const Signup = () => {
                 <label className="text-dark">Confirm Password:</label>
                 <input
                   style={{ backgroundColor: "#F0F0F0" }}
-                  onChange={handleChange("password")}
+                  onChange={handleChange("confirmPassword")}
                   className="form-control"
                   type="password"
-                  value={password}
+                  value={confirmPassword}
                 />
               </div>
-              <button onClick={onSubmit} className="btn btn-success btn-block">
+              <button
+                disabled={password != confirmPassword}
+                onClick={onSubmit}
+                className="btn btn-success btn-block"
+              >
                 Submit
               </button>
             </form>
@@ -151,6 +157,11 @@ const Signup = () => {
   return (
     <>
       <Menu />
+      <div>
+        <h3 className="text-center mt-3 text-capitalize">
+          Signup! and Join Us
+        </h3>
+      </div>
       <div className="p-4 m-0">
         {successMessage()}
         {errorMessage()}
