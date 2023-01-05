@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Cards from "../components/Cards";
 import { getUsers } from "../apicalls/restaurantapicalls";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
+import ManageMenuCard from "../components/ManageMenuCard";
 
 export default function ManageRestaurants({ match }) {
   const [products, setProducts] = useState({});
@@ -70,7 +70,7 @@ export default function ManageRestaurants({ match }) {
               <Row>
                 {products.map((user, index) => (
                   <Col key={index} sm={12} md={6} lg={4} xl={4}>
-                    <Cards user={user} />
+                    <ManageMenuCard user={user} />
                   </Col>
                 ))}
               </Row>

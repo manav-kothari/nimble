@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import App from "./App";
 import Signin from "./auth/Signin";
 import Signup from "./auth/Signup";
+import Footer from "./components/Footer/Footer";
 import AddProduct from "./restaurant/AddProduct";
 import AdminDashboard from "./restaurant/AdminDashboard";
 import ManageProducts from "./restaurant/ManageProducts";
@@ -10,6 +11,7 @@ import ManageProfile from "./restaurant/ManageProfile";
 import ManageRestaurants from "./restaurant/ManageRestaurants";
 import Orders from "./restaurant/Orders";
 import UpdateProduct from "./restaurant/UpdateProduct";
+import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
 
 const WebRoutes = () => {
   return (
@@ -27,8 +29,13 @@ const WebRoutes = () => {
         />
         <Route path="/profile" element={<ManageProfile />} />
         <Route path="/admin/restaurants" element={<ManageRestaurants />} />
+        <Route
+          path="/superadmin/products/:userId"
+          element={<ManageRestaurantProduct />}
+        />
         <Route path="/menu/:userId" element={<App />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -88,6 +89,16 @@ const Signup = () => {
                   value={password}
                 />
               </div>
+              <div className="form-group">
+                <label className="text-dark">Confirm Password:</label>
+                <input
+                  style={{ backgroundColor: "#F0F0F0" }}
+                  onChange={handleChange("password")}
+                  className="form-control"
+                  type="password"
+                  value={password}
+                />
+              </div>
               <button onClick={onSubmit} className="btn btn-success btn-block">
                 Submit
               </button>
@@ -139,6 +150,7 @@ const Signup = () => {
 
   return (
     <>
+      <Menu />
       <div className="p-4 m-0">
         {successMessage()}
         {errorMessage()}
