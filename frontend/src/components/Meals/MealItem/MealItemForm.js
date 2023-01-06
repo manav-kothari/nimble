@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
-import Input from './../../UI/Input';
+import React, { useRef, useState } from "react";
+import Input from "./../../UI/Input";
 
-const MealItemForm = props => {
+const MealItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const enteredAmount = amountInputRef.current.value;
@@ -24,21 +24,24 @@ const MealItemForm = props => {
   };
 
   return (
-    <form className="text-right" onSubmit={handleSubmit}>
+    <form className="float-right" onSubmit={handleSubmit}>
       <Input
         ref={amountInputRef}
-        label="Amount"
+        label=""
         input={{
-          id: 'amount_' + props.id,
-          type: 'number',
-          min: '1',
-          max: '5',
-          step: '1',
-          defaultValue: '1',
-          className: 'w-12 font-inherit pl-2 rounded-md custom-border',
+          id: "amount_" + props.id,
+          type: "number",
+          min: "1",
+          max: "5",
+          step: "1",
+          defaultValue: "1",
+          className: "w-12 font-inherit pl-2 rounded-md custom-border",
         }}
       />
-      <button className="font-inherit cursor-pointer bg-yellow-750 custom-border border-yellow-750 text-white py-1 px-8 rounded-3xl font-bold hover:bg-yellow-950 transition-colors">
+      <button
+        style={{ backgroundColor: "#577bbc" }}
+        className="font-inherit cursor-pointer  custom-border   py-1 px-8 rounded-3xl font-bold  transition-colors"
+      >
         Add
       </button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}

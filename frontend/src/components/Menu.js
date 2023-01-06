@@ -5,7 +5,7 @@ import logo from "../logo2.png";
 const Menu = () => {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar fixed="top" bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">
             <img

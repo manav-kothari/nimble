@@ -28,7 +28,10 @@ export default function MealsSummary() {
 
   return (
     <section className="text-center max-w-[45rem] w-[90%] m-auto mt-[-10rem] relative   rounded-2xl p-4 shadow-0.5xl">
-      <span className="mt-0 font-bold text-2xl md:text-[2rem]">
+      <span
+        style={{ fontFamily: "sans-serif" }}
+        className="mt-0 text-capitalize text-2xl md:text-[2rem]"
+      >
         {products.name}
       </span>
       {/* <p className="text-dark">tagline</p> */}

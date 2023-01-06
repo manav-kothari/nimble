@@ -5,6 +5,7 @@ import { getProducts } from "../../apicalls/restaurantapicalls";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import { useParams } from "react-router-dom";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 const AvailableMeals = ({ match }) => {
   const [meals, setMeals] = useState([]);
@@ -45,11 +46,13 @@ const AvailableMeals = ({ match }) => {
 
   if (isLoading) {
     return (
-      <section className="text-center p-4 bg-white shadow-md rounded-2xl max-w-[60rem] w-[90%] my-8 mx-auto">
-        <IconContext.Provider value={{ className: "spinner" }}>
-          <ImSpinner9 />
-        </IconContext.Provider>
-      </section>
+      <>
+        <section className="text-center p-4 bg-white shadow-md rounded-2xl max-w-[60rem] w-[90%] my-8 mx-auto">
+          <IconContext.Provider value={{ className: "spinner" }}>
+            <ImSpinner9 />
+          </IconContext.Provider>
+        </section>
+      </>
     );
   }
 
@@ -62,11 +65,13 @@ const AvailableMeals = ({ match }) => {
   }
 
   return (
-    <section className="max-w-[60rem] w-[90%] my-8 mx-auto animate-meals-appear">
-      <Card>
-        <ul className="list-none m-0 p-0">{mealsList}</ul>
-      </Card>
-    </section>
+    <>
+      <section className="max-w-[60rem] w-[90%] my-8 mx-auto animate-meals-appear">
+        <Card>
+          <ul className="list-none m-0 p-0">{mealsList}</ul>
+        </Card>
+      </section>
+    </>
   );
 };
 

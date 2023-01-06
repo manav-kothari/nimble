@@ -220,7 +220,7 @@ footer {
 }
 
 .page {
-  height: 70vh;
+  height: 80vh;
 }
 
 .heading {
@@ -242,4 +242,7 @@ footer {
 .logo{
   height: 50px;
   width: 100px;
+}
+.page3{
+  margin-top: 100px;
 }

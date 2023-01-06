@@ -18,7 +18,7 @@ const AdminDashboard = ({ history }) => {
         <ul className="list-group">
           <Button className="list-group-item">
             <Link
-              to="/admin/orders/:userId"
+              to="/admin/orders"
               className="nav-link text-light text-center bg-primary text-capitalize h5"
             >
               All Orders
@@ -94,12 +94,12 @@ const AdminDashboard = ({ history }) => {
   return (
     <>
       <Menu />
-      <div className="page2">
-        <div className="p-2">
+      <div className="page2 page3">
+        {/* <div className="p-2">
           <Link to="/" className="btn btn btn-outline-primary">
             Go to Home Page
           </Link>
-        </div>
+        </div> */}
         <div className="container p-2">
           <h4 className="text-dark text-center text-capitalize py-2">
             Manage all things here

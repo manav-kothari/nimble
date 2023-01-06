@@ -12,7 +12,6 @@ const ProductCartSchema = new mongoose.Schema({
   name: String,
   // count: Number,
   price: Number,
-  image: String,
 });
 
 const ProductCart = mongoose.model("ProductCart", ProductCartSchema);
@@ -24,7 +23,6 @@ const OrderSchema = new mongoose.Schema({
   amount: { type: Number },
   address: String,
   number: String,
-  cakemessage: String,
   instruction: { type: String, maxlength: 2000 },
   // status: {
   //   type: String,

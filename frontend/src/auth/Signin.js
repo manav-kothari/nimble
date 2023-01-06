@@ -127,15 +127,19 @@ const Signin = () => {
   return (
     <>
       <Menu />
-      <h3 className="text-center text-capitalize mt-4">Welcome Back! Signin</h3>
-      <div className="p-4 page">
-        <container>
-          {loadingMessage()}
-          {errorMessage()}
-          {signInForm()}
+      <div className="page3">
+        <h3 className="text-center text-capitalize mt-4">
+          Welcome Back! Signin
+        </h3>
+        <div className="p-4 page">
+          <container>
+            {loadingMessage()}
+            {errorMessage()}
+            {signInForm()}
 
-          {performRedirect()}
-        </container>
+            {performRedirect()}
+          </container>
+        </div>
       </div>
     </>
   );

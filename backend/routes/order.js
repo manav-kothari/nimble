@@ -18,19 +18,11 @@ router.param("orderId", getOrderById);
 
 //Actual routes
 //create
-router.post(
-  "/order/create/",
-  isSignedIn,
-  isAuthenticated,
-
-  createOrder
-);
+router.post("/order/create/", createOrder);
 //read
 router.get(
-  "/order/all/:userId",
-  isSignedIn,
-  isAuthenticated,
-  isAdmin,
+  "/order/all/",
+
   getAllOrders
 );
 

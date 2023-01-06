@@ -4,6 +4,7 @@ import { Table, Pagination } from "react-bootstrap";
 import { getAllOrders, isAuthenticated } from "../apicalls/restaurantapicalls";
 import { LinkContainer } from "react-router-bootstrap";
 import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
+import Menu from "../components/Menu";
 
 const Orders = ({ match }) => {
   const [orders, setOrders] = useState([]);
@@ -11,6 +12,7 @@ const Orders = ({ match }) => {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState("");
+  const MINUTE_MS = 10000;
 
   // const pageNumber = match.params.pageNumber || 1;
   const pageNumber = 1;
@@ -34,6 +36,11 @@ const Orders = ({ match }) => {
   useEffect(() => {
     setLoading(true);
     preload(pageNumber);
+    const interval = setInterval(() => {
+      refreshPage();
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval);
     // eslint-disable-next-line
   }, [pageNumber]);
 
@@ -54,18 +61,24 @@ const Orders = ({ match }) => {
     }
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <>
+      <Menu />
       {loading ? (
         loadingMessage()
       ) : error ? (
         errorMessage()
       ) : (
-        <div className="page2">
+        <div className="page page3">
           <div className="p-3">
             <Link to="/myprofile" className="btn btn-md btn-dark mb-3">
               Go Back
             </Link>
+            <button onClick={refreshPage}>Refresh</button>
             <div className="container">
               <h3 className="text-dark text-center p-2 headingalt">
                 All Orders :
@@ -81,14 +94,14 @@ const Orders = ({ match }) => {
             >
               <thead className="">
                 <tr className="text-center">
+                  <th>Timestamp</th>
+                  <th>Order ID</th>
                   <th>Cuomer's Name</th>
                   <th>Amount</th>
                   <th>Product(s)</th>
                   <th>Instruction</th>
                   <th>Table Number</th>
                   <th>Cuomer's Number</th>
-                  <th>Timestamp</th>
-                  <th>Order ID</th>
                   <th>Mobile Number</th>
                 </tr>
               </thead>
@@ -96,8 +109,9 @@ const Orders = ({ match }) => {
               <tbody className="text-center text-dark">
                 {orders.map((order) => (
                   <tr key={order._id}>
-                    <td>{order.user.name}</td> <td>₹{order.amount / 100}</td>
-                    <td>
+                    {/* <td>{order.user.name}</td>  */}
+                    {/* <td>₹{order.amount / 100}</td> */}
+                    {/* <td>
                       {order.products.map((product, index) => {
                         return (
                           <a
@@ -108,14 +122,14 @@ const Orders = ({ match }) => {
                           </a>
                         );
                       })}
-                    </td>
-                    <td>{order.instruction}</td>
+                    </td> */}
+                    {/* <td>{order.instruction}</td>
                     <td>{order.branch}</td>
-                    <td>{order.number}</td>
+                    <td>{order.number}</td> */}
                     <td>{order.timestamp}</td>
                     <td>{order._id}</td>
                     <td>{order.transaction_id}</td>
-                    <td>{order.user._id}</td>
+                    {/* <td>{order.user._id}</td> */}
                   </tr>
                 ))}
               </tbody>

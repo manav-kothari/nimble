@@ -24,23 +24,31 @@ const Signup = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, number, password })
-      .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
-        } else {
-          setValues({
-            ...values,
-            name: "",
-            email: "",
-            number: "",
-            password: "",
-            error: "",
-            success: true,
-          });
-        }
-      })
-      .catch(console.log("Error in signup"));
+    if (password != confirmPassword) {
+      setValues({
+        ...values,
+        error: "password and confirm password doesn't match",
+        success: false,
+      });
+    } else {
+      signup({ name, email, number, password })
+        .then((data) => {
+          if (data.error) {
+            setValues({ ...values, error: data.error, success: false });
+          } else {
+            setValues({
+              ...values,
+              name: "",
+              email: "",
+              number: "",
+              password: "",
+              error: "",
+              success: true,
+            });
+          }
+        })
+        .catch(console.log("Error in signup"));
+    }
   };
 
   const signUpForm = () => {
@@ -101,11 +109,7 @@ const Signup = () => {
                   value={confirmPassword}
                 />
               </div>
-              <button
-                disabled={password != confirmPassword}
-                onClick={onSubmit}
-                className="btn btn-success btn-block"
-              >
+              <button onClick={onSubmit} className="btn btn-success btn-block">
                 Submit
               </button>
             </form>
@@ -157,7 +161,7 @@ const Signup = () => {
   return (
     <>
       <Menu />
-      <div>
+      <div className="page3">
         <h3 className="text-center mt-3 text-capitalize">
           Signup! and Join Us
         </h3>

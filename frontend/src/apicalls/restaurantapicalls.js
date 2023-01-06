@@ -223,11 +223,8 @@ export const getUsers = () => {
 /****** Orders ******/
 
 export const getAllOrders = (userId, token, pageNumber) => {
-  return fetch(`${API}/order/all/${userId}?pageNumber=${pageNumber}`, {
+  return fetch(`${API}/order/all/`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   })
     .then((response) => {
       return response.json();

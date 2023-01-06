@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getUsers } from "../apicalls/restaurantapicalls";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import ManageMenuCard from "../components/ManageMenuCard";
+import Menu from "../components/Menu";
 
 export default function ManageRestaurants({ match }) {
   const [products, setProducts] = useState({});
@@ -41,7 +42,8 @@ export default function ManageRestaurants({ match }) {
 
   return (
     <>
-      <div>
+      <Menu />
+      <div className="page3">
         <h2 className="text-primary text-center pt-2 pb-1 text-weight-bold heading text-capitalize">
           All Restaurants
         </h2>
