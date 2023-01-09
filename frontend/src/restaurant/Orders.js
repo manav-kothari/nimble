@@ -12,7 +12,7 @@ const Orders = ({ match }) => {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState("");
-  const MINUTE_MS = 10000;
+  const MINUTE_MS = 60000;
 
   // const pageNumber = match.params.pageNumber || 1;
   const pageNumber = 1;
@@ -46,8 +46,10 @@ const Orders = ({ match }) => {
 
   const loadingMessage = () => {
     return (
-      <div className="aler alert-info text-center blink_me p-4 my-4">
-        <h2>Loading...</h2>
+      <div className="page3 page">
+        <div className="alert alert-info text-center blink_me p-4 my-4">
+          <h2 className="mt-4">Loading...</h2>
+        </div>
       </div>
     );
   };

@@ -42,6 +42,7 @@ const Signup = () => {
               email: "",
               number: "",
               password: "",
+              confirmPassword: "",
               error: "",
               success: true,
             });
@@ -67,16 +68,6 @@ const Signup = () => {
                   value={name}
                 />
               </div>
-              <div className="form-group">
-                <label className="text-dark">Email:</label>
-                <input
-                  className="form-control"
-                  style={{ backgroundColor: "#F0F0F0" }}
-                  onChange={handleChange("email")}
-                  type="email"
-                  value={email}
-                />
-              </div>
 
               <div className="form-group">
                 <label className="text-dark">Number:</label>
@@ -86,6 +77,17 @@ const Signup = () => {
                   onChange={handleChange("number")}
                   type="number"
                   value={number}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="text-dark">Email:</label>
+                <input
+                  className="form-control"
+                  style={{ backgroundColor: "#F0F0F0" }}
+                  onChange={handleChange("email")}
+                  type="email"
+                  value={email}
                 />
               </div>
 
