@@ -6,6 +6,7 @@ import {
   getProducts,
   deleteProduct,
 } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const ManageProducts = ({ match }) => {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,8 @@ const ManageProducts = ({ match }) => {
         errorMessage()
       ) : (
         <>
-          <div className="p-3">
+          <Menu />
+          <div className="p-3 page3 page">
             <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
               Go Back
             </Link>

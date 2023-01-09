@@ -6,6 +6,7 @@ import {
   updateUser,
 } from "../apicalls/restaurantapicalls";
 import { Link, useParams } from "react-router-dom";
+import Menu from "../components/Menu";
 
 const ManageProfile = ({ match }) => {
   const [values, setValues] = useState({
@@ -180,7 +181,8 @@ const ManageProfile = ({ match }) => {
 
   return (
     <>
-      <div className="p-3">
+      <Menu />
+      <div className="p-3 page3">
         <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
           Go Back
         </Link>

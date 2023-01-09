@@ -4,6 +4,7 @@ import {
   createCategory,
   isAuthenticated,
 } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -87,19 +88,22 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="page">
-      <div className="p-3">{goBack()}</div>
-      <div className="container p-4">
-        <h4 className="text-dark text-center">Create a new category</h4>
-        <div className="row bg-light rounded ">
-          <div className="col-md-8 offset-md-2">
-            {successMessage()}
-            {errorMessage()}
-            {myCategoryForm()}
+    <>
+      <Menu />
+      <div className="page page3">
+        <div className="p-3">{goBack()}</div>
+        <div className="container p-4">
+          <h4 className="text-dark text-center">Create a new category</h4>
+          <div className="row bg-light rounded ">
+            <div className="col-md-8 offset-md-2">
+              {successMessage()}
+              {errorMessage()}
+              {myCategoryForm()}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

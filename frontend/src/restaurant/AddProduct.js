@@ -4,6 +4,7 @@ import {
   isAuthenticated,
   createaProduct,
 } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const AddProduct = () => {
   const { user, token } = isAuthenticated();
@@ -118,12 +119,13 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="p-3">
+      <Menu />
+      <div className="p-3 page3">
         <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
           Go Back
         </Link>
       </div>
-      <div className="container">
+      <div className="container page">
         <h4 className="text-dark text-center">Add Item Details</h4>
         <div className="row  text-white rounded">
           <div className="col-md-8 offset-md-2">

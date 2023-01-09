@@ -77,10 +77,10 @@ const Orders = ({ match }) => {
       ) : (
         <div className="page page3">
           <div className="p-3">
-            <Link to="/myprofile" className="btn btn-md btn-dark mb-3">
+            <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
               Go Back
             </Link>
-            <button onClick={refreshPage}>Refresh</button>
+            {/* <button onClick={refreshPage}>Refresh</button> */}
             <div className="container">
               <h3 className="text-dark text-center p-2 headingalt">
                 All Orders :

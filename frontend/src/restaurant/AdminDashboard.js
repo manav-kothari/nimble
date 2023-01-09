@@ -11,7 +11,7 @@ const AdminDashboard = ({ history }) => {
 
   const adminfront = () => {
     return (
-      <div className="card">
+      <div className="card mt-4">
         <h4 className="card-header text-white text-center bg-success">
           Navigation
         </h4>
@@ -34,7 +34,7 @@ const AdminDashboard = ({ history }) => {
           </Button>
           <Button className="list-group-item">
             <Link
-              to="/admin/cate"
+              to="/admin/categories"
               className="nav-link text-light text-center bg-primary text-capitalize h5"
             >
               Manage Category
@@ -64,14 +64,7 @@ const AdminDashboard = ({ history }) => {
               Manage My Profile
             </Link>
           </Button>
-          <Button className="list-group-item">
-            <Link
-              to="/admin/restaurants"
-              className="nav-link text-light text-center bg-primary text-capitalize h5"
-            >
-              Manage Restaurants
-            </Link>
-          </Button>
+
           <Button className="list-group-item">
             <Link
               onClick={() => {
@@ -94,14 +87,14 @@ const AdminDashboard = ({ history }) => {
   return (
     <>
       <Menu />
-      <div className="page2 page3">
+      <div className="page page3">
         {/* <div className="p-2">
           <Link to="/" className="btn btn btn-outline-primary">
             Go to Home Page
           </Link>
         </div> */}
         <div className="container p-2">
-          <h4 className="text-dark text-center text-capitalize py-2">
+          <h4 className="text-dark text-center text-capitalize py-2 my-2">
             Manage all things here
           </h4>
           {adminfront()}
