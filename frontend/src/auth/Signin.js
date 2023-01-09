@@ -44,11 +44,11 @@ const Signin = () => {
 
   const performRedirect = () => {
     if (didRedirect) {
-      if (user) {
+      if (user && user.role === 1) {
         return <Navigate to="/admin/dashboard" />;
       }
     }
-    // if (isAuthenticated()) return <Redirect to="/" />;
+    if (user && user.role === 2) return <Navigate to="/superadmin/dashboard" />;
   };
 
   const loadingMessage = () => {

@@ -25,16 +25,25 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
+  // const orderData = {
+  //       products: products,
+  //       transaction_id: data.id,
+  //       amount: data.amount,
+  //       instruction: instruction,
+  //       branch: branch,
+  //       number: number,
+  //     };
+
   const handleSubmitOrder = async () => {
     setIsSubmitting(true);
     await fetch(`${API}/order/create/`, {
       method: "POST",
-      body: JSON.stringify({
-        orderedItems: cartContext.items,
-      }),
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        products: cartContext.items,
+      }),
     });
     setIsSubmitting(false);
     setDidSubmit(true);
