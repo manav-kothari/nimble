@@ -58,14 +58,16 @@ const Cart = (props) => {
   const modalActions = (
     <div className="text-right">
       <button
-        className="cart-btn text-yellow-750 border-yellow-750"
+        style={{ backgroundColor: "#577bbc" }}
+        className="cart-btn text-white"
         onClick={props.onHideCart}
       >
         Close
       </button>
       {hasItems && (
         <button
-          className="cart-btn bg-yellow-750 text-white"
+          style={{ backgroundColor: "#0f172a" }}
+          className="cart-btn  text-white"
           onClick={handleOrder}
         >
           Order
@@ -97,7 +99,8 @@ const Cart = (props) => {
       <p className="text-2xl">Successfully sent order!</p>
       <div className="text-right">
         <button
-          className="cart-btn text-yellow-750 border-yellow-750"
+          style={{ backgroundColor: "#0f172a" }}
+          className="cart-btn text-white"
           onClick={props.onHideCart}
         >
           Close

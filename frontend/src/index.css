@@ -39,25 +39,25 @@
   }
 
   .cart-item-border {
-    border-bottom: 2px solid #8a2b06;
+    border-bottom: 2px solid #0f172a;
   }
 }
 
 @layer components {
   .cart-btn {
-    @apply font-inherit cursor-pointer bg-transparent custom-border py-2 px-8 rounded-3xl ml-4 hover:bg-yellow-980 hover:border-yellow-980 hover:text-white active:bg-yellow-980 active:border-yellow-980 active:text-white transition-colors;
+    @apply font-inherit cursor-pointer bg-transparent custom-border py-2 px-8 rounded-3xl ml-4 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white active:bg-indigo-500 active:border-indigo-500 active:text-white transition-colors;
   }
 
   .cart-item-btn {
-    @apply font-inherit font-bold text-xl text-yellow-750 border border-solid border-yellow-750 w-12 text-center rounded-md bg-transparent cursor-pointer ml-4 m-1 hover:bg-yellow-750 hover:text-white active:bg-yellow-750 active:text-white transition-colors;
+    @apply font-inherit font-bold text-xl text-indigo-500 border border-solid border-indigo-500 w-12 text-center rounded-md bg-transparent cursor-pointer ml-4 m-1 hover:bg-indigo-500 hover:text-white active:bg-indigo-500 active:text-white transition-colors;
   }
 
   .checkout-btn {
-    @apply font-inherit text-yellow-980 cursor-pointer bg-transparent border-none rounded-3xl py-2 px-8 hover:bg-red-150 active:bg-red-150 transition-colors;
+    @apply font-inherit bg-indigo-500 cursor-pointer bg-transparent border-none rounded-3xl py-2 px-8 hover:bg-indigo-500 active:bg-indigo-500 transition-colors;
   }
 
   .spinner {
-    @apply h-12 w-12 animate-rotate text-gray-750;
+    @apply h-12 w-12 animate-rotate text-indigo-500;
   }
 }
 

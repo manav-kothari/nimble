@@ -137,7 +137,10 @@ const Checkout = (props) => {
         <button className="checkout-btn" type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button className="checkout-btn bg-yellow-980 text-white border border-solid border-yellow-980 hover:bg-yellow-880 active:bg-yellow-880">
+        <button
+          style={{ backgroundColor: "#0f172a" }}
+          className="checkout-btn  text-white border border-solid  "
+        >
           Confirm
         </button>
       </div>
