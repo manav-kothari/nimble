@@ -1,39 +1,66 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
   isAuthenticated,
-  createaProduct,
+  getProduct,
+  updateProduct,
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
-const AddProduct = () => {
+const UpdateRestaurantProduct = ({ match }) => {
   const { user, token } = isAuthenticated();
 
   const [values, setValues] = useState({
     name: "",
     price: "",
     loading: false,
-    error: "",
     description: "",
+    error: "",
     createdProduct: "",
-    formData: new FormData(),
+    formData: "",
   });
+  const { productId } = useParams();
+
   const { name, price, loading, error, description, createdProduct, formData } =
     values;
 
+  const preload = (productId) => {
+    getProduct(productId).then((data) => {
+      // console.log(data);
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    setValues({ ...values, loading: true });
+    preload(productId);
+    // eslint-disable-next-line
+  }, []);
+
+  //TODO: work on it
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    createaProduct(user._id, token, formData).then((data) => {
+
+    updateProduct(productId, user._id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
         setValues({
           ...values,
           name: "",
-          price: "",
-          description: "",
           category: "",
+          price: "",
           loading: false,
           createdProduct: data.name,
         });
@@ -52,7 +79,7 @@ const AddProduct = () => {
       className="alert alert-success mt-3"
       style={{ display: createdProduct ? "" : "none" }}
     >
-      <h4 className="text-capitalize">{createdProduct} added successfully</h4>
+      <h4>{createdProduct} Updated successfully!</h4>
     </div>
   );
 
@@ -64,18 +91,16 @@ const AddProduct = () => {
 
   const loadingMessage = () => {
     return (
-      loading && (
-        <div className="aler alert-info text-center blink_me">
-          <h2>Loading...</h2>
-        </div>
-      )
+      <div className="aler alert-info text-center blink_me p-4 my-4">
+        <h2>Loading...</h2>
+      </div>
     );
   };
 
   const createProductForm = () => (
     <form className="text-dark">
       Name:
-      <div className="form-group">
+      <div className="form-group ">
         <input
           maxlength="32"
           onChange={handleChange("name")}
@@ -91,7 +116,7 @@ const AddProduct = () => {
           onChange={handleChange("price")}
           type="number"
           className="form-control"
-          placeholder="Price"
+          placeholder="Original Price"
           value={price}
         />
       </div>
@@ -110,33 +135,40 @@ const AddProduct = () => {
         onClick={onSubmit}
         className="btn btn-block btn-outline-success mb-3 mt-4"
       >
-        Add Item
+        Update Item
       </button>
     </form>
   );
-  formData.append("userId", user._id);
 
   return (
     <>
-      <Menu />
-      <div className="p-3 page3">
-        <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
-          Go Back
-        </Link>
-      </div>
-      <div className="container page">
-        <h4 className="text-dark text-center">Add Item Details</h4>
-        <div className="row  text-white rounded">
-          <div className="col-md-8 offset-md-2">
-            {loadingMessage()}
-            {successMessage()}
-            {errorMessage()}
-            {createProductForm()}
+      {loading ? (
+        loadingMessage()
+      ) : (
+        <>
+          <Menu />
+          <div className="p-3 page3">
+            <Link
+              to={`/admin/restaurants`}
+              className="btn btn-md btn-primary mb-3"
+            >
+              Go Back
+            </Link>
           </div>
-        </div>
-      </div>
+          <div className="container page">
+            <h4 className="text-dark text-center">Update the Item</h4>
+            <div className="row text-white rounded">
+              <div className="col-md-8 offset-md-2">
+                {successMessage()}
+                {errorMessage()}
+                {createProductForm()}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
 
-export default AddProduct;
+export default UpdateRestaurantProduct;

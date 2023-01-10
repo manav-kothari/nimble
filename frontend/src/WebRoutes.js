@@ -13,9 +13,11 @@ import ManageProfile from "./restaurant/ManageProfile";
 import ManageRestaurants from "./restaurant/ManageRestaurants";
 import Orders from "./restaurant/Orders";
 import UpdateProduct from "./restaurant/UpdateProduct";
+import AddRestaurantProduct from "./superadmin/AddRestaurantProduct";
 import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
 import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
+import UpdateRestaurantProduct from "./superadmin/UpdateRestaurantProduct";
 
 const WebRoutes = () => {
   return (
@@ -44,7 +46,14 @@ const WebRoutes = () => {
           path="/superadmin/profile/:userId"
           element={<ManageRestaurantProfile />}
         />
-
+        <Route
+          path="/superadmin/create/product/:userId"
+          element={<AddRestaurantProduct />}
+        />
+        <Route
+          path="/superadmin/product/update/:productId"
+          element={<UpdateRestaurantProduct />}
+        />
         <Route path="/menu/:userId" element={<App />} />
       </Routes>
       <Footer />

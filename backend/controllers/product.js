@@ -28,7 +28,7 @@ exports.createProduct = (req, res) => {
       });
     }
     //destructure the fields
-    const { name, price, description, userId, userName } = fields;
+    const { name, price, description, userId } = fields;
 
     if (!name || !price || !userId) {
       return res.status(400).json({

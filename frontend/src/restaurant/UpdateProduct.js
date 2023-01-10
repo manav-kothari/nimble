@@ -5,6 +5,7 @@ import {
   getProduct,
   updateProduct,
 } from "../apicalls/restaurantapicalls";
+import Menu from "../components/Menu";
 
 const UpdateProduct = ({ match }) => {
   const { user, token } = isAuthenticated();
@@ -145,12 +146,13 @@ const UpdateProduct = ({ match }) => {
         loadingMessage()
       ) : (
         <>
-          <div className="p-3">
+          <Menu />
+          <div className="p-3 page3">
             <Link to="/admin/products" className="btn btn-md btn-primary mb-3">
               Go Back
             </Link>
           </div>
-          <div className="container">
+          <div className="container page">
             <h4 className="text-dark text-center">Update the Item</h4>
             <div className="row text-white rounded">
               <div className="col-md-8 offset-md-2">

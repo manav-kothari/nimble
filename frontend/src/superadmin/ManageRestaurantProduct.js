@@ -7,6 +7,7 @@ import {
   deleteProduct,
 } from "../apicalls/restaurantapicalls";
 import { useParams } from "react-router-dom";
+import Menu from "../components/Menu";
 
 const ManageRestaurantProduct = () => {
   const [products, setProducts] = useState([]);
@@ -69,13 +70,24 @@ const ManageRestaurantProduct = () => {
         errorMessage()
       ) : (
         <>
-          <div className="p-3">
-            <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
+          <Menu />
+          <div className="p-3 page3 page">
+            <Link
+              to="/superadmin/dashboard"
+              className="btn btn-md btn-primary mb-3"
+            >
               Go Back
+            </Link>
+            <Link
+              to={`/superadmin/create/product/${userId}`}
+              className="btn btn-md btn-info mb-3 float float-right"
+            >
+              Add Product
             </Link>
             <div className="container">
               <h3 className="text-dark text-center p-2">All Products :</h3>
             </div>
+
             <Table
               striped
               bordered
@@ -101,7 +113,7 @@ const ManageRestaurantProduct = () => {
                     <td>
                       <Link
                         className="btn btn-success"
-                        to={`/admin/product/update/${product._id}`}
+                        to={`/superadmin/product/update/${product._id}`}
                       >
                         <span className="">Update</span>
                       </Link>

@@ -83,7 +83,7 @@ const ManageRestaurantProfile = ({ match }) => {
               />
             </div>
 
-            <div className="form-group my-2">
+            <div className="form-group my-4">
               <label className="text-dark">Logo:</label>
               <a
                 href="/admin/logo"
@@ -193,7 +193,10 @@ const ManageRestaurantProfile = ({ match }) => {
     <>
       <Menu />
       <div className="p-3 page3">
-        <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
+        <Link
+          to="/superadmin/dashboard"
+          className="btn btn-md btn-primary mb-3"
+        >
           Go Back
         </Link>
       </div>
@@ -205,7 +208,10 @@ const ManageRestaurantProfile = ({ match }) => {
         {successMessage()}
         {errorMessage()}
         {updateForm()}
-        {role}
+        <span className="text-center text-bold">
+          Role Explained: 0- Signed up (No Permissions), 1- Admin (Restaurant),
+          2- Super Admin (All Access)
+        </span>
       </div>
     </>
   );

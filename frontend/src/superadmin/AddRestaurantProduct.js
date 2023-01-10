@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   isAuthenticated,
   createaProduct,
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
-const AddProduct = () => {
+const AddRestaurantProduct = () => {
   const { user, token } = isAuthenticated();
+  const { userId } = useParams();
 
   const [values, setValues] = useState({
     name: "",
@@ -114,13 +115,16 @@ const AddProduct = () => {
       </button>
     </form>
   );
-  formData.append("userId", user._id);
+  formData.append("userId", userId);
 
   return (
     <>
       <Menu />
       <div className="p-3 page3">
-        <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
+        <Link
+          to={`/superadmin/products/${userId}`}
+          className="btn btn-md btn-primary mb-3"
+        >
           Go Back
         </Link>
       </div>
@@ -139,4 +143,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddRestaurantProduct;

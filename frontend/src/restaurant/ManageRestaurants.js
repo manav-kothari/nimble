@@ -3,6 +3,7 @@ import { getUsers } from "../apicalls/restaurantapicalls";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import ManageMenuCard from "../components/ManageMenuCard";
 import Menu from "../components/Menu";
+import { Link } from "react-router-dom";
 
 export default function ManageRestaurants({ match }) {
   const [products, setProducts] = useState({});
@@ -44,6 +45,12 @@ export default function ManageRestaurants({ match }) {
     <>
       <Menu />
       <div className="page3">
+        <Link
+          to="/superadmin/dashboard"
+          className="btn btn-md btn-primary mb-3 ml-4"
+        >
+          Go Back
+        </Link>
         <h2 className="text-primary text-center pt-2 pb-1 text-weight-bold heading text-capitalize">
           All Restaurants
         </h2>
