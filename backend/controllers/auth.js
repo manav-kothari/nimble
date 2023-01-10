@@ -109,3 +109,12 @@ exports.isAdmin = (req, res, next) => {
   }
   next();
 };
+
+exports.isSuperAdmin = (req, res, next) => {
+  if (req.profile.role === 2) {
+    return res.status(403).json({
+      error: "You are not SUPER ADMIN, Access denied",
+    });
+  }
+  next();
+};

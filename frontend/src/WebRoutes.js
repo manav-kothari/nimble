@@ -14,6 +14,7 @@ import ManageRestaurants from "./restaurant/ManageRestaurants";
 import Orders from "./restaurant/Orders";
 import UpdateProduct from "./restaurant/UpdateProduct";
 import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
+import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
 
 const WebRoutes = () => {
@@ -39,6 +40,11 @@ const WebRoutes = () => {
           path="/superadmin/products/:userId"
           element={<ManageRestaurantProduct />}
         />
+        <Route
+          path="/superadmin/profile/:userId"
+          element={<ManageRestaurantProfile />}
+        />
+
         <Route path="/menu/:userId" element={<App />} />
       </Routes>
       <Footer />

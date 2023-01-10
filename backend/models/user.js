@@ -34,6 +34,10 @@ var userSchema = new mongoose.Schema(
     resetToken: String,
     expireToken: Date,
     salt: String,
+    role: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

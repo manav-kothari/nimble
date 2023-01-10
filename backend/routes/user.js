@@ -18,6 +18,7 @@ router.get("/users", getAllUsers);
 
 router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
 router.put("/user/:userId", isSignedIn, isAuthenticated, updateUser);
+router.put("/superadmin/user/:userId", isSignedIn, updateUser);
 
 router.post("/reset-password", resetPassword);
 
