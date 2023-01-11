@@ -97,14 +97,13 @@ const Orders = ({ match }) => {
               <thead className="">
                 <tr className="text-center">
                   <th>Timestamp</th>
-                  <th>Order ID</th>
-                  <th>Cuomer's Name</th>
-                  <th>Amount</th>
-                  <th>Product(s)</th>
-                  <th>Instruction</th>
                   <th>Table Number</th>
-                  <th>Cuomer's Number</th>
-                  <th>Mobile Number</th>
+                  <th>Product(s)</th>
+                  <th>Amount</th>
+                  <th>Instruction</th>
+                  <th>Cuomer's Name</th>
+                  <th>Cuomer's Mobilr Number</th>
+                  <th>Order ID</th>
                 </tr>
               </thead>
 
@@ -113,24 +112,28 @@ const Orders = ({ match }) => {
                   <tr key={order._id}>
                     {/* <td>{order.user.name}</td>  */}
                     {/* <td>₹{order.amount / 100}</td> */}
-                    {/* <td>
-                      {order.products.map((product, index) => {
-                        return (
-                          <a
-                            href={`/product/${product._id}`}
-                            className="text-dark "
-                          >
-                            <u>{product.name}</u> |{" "}
-                          </a>
-                        );
-                      })}
-                    </td> */}
+
                     {/* <td>{order.instruction}</td>
                     <td>{order.branch}</td>
                     <td>{order.number}</td> */}
                     <td>{order.timestamp}</td>
+                    <td>{order.tableNumber}</td>
+                    <td>
+                      {order.orderedItems.map((product, id) => {
+                        return (
+                          <>
+                            <span>{product.name}</span>
+                            <br />
+                          </>
+                        );
+                      })}
+                    </td>
+                    {/* <td>{order.orderedItems.name}</td> */}
+                    <td>{order.amount}</td>
+                    <td>{order.instruction}</td>
+                    <td>{order.name}</td>
+                    <td>{order.mobileNumber}</td>
                     <td>{order._id}</td>
-                    <td>{order.transaction_id}</td>
                     {/* <td>{order.user._id}</td> */}
                   </tr>
                 ))}
@@ -139,7 +142,7 @@ const Orders = ({ match }) => {
           </div>
           {pages > 1 && (
             <div className="center ">
-              <Pagination className="my-4 font-weight-bold " pagination>
+              {/* <Pagination className="my-4 font-weight-bold " pagination>
                 <div className="">
                   <LinkContainer to={`/admin/allorders/page/${page - 1}`}>
                     <Pagination.Item
@@ -165,7 +168,7 @@ const Orders = ({ match }) => {
                     </Pagination.Item>
                   </LinkContainer>
                 </div>
-              </Pagination>
+              </Pagination> */}
             </div>
           )}
         </div>
