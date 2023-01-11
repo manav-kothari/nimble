@@ -27,7 +27,7 @@ const Checkout = (props) => {
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredNumberIsValid = !isEmpty(enteredNumber);
     const enteredTableNumberIsValid = !isEmpty(enteredTableNumber);
-    const enteredDescriptionIsValid = !isEmpty(enteredDescription);
+    const enteredDescriptionIsValid = isEmpty(enteredDescription);
 
     setFormInputsValidity({
       name: enteredNameIsValid,
@@ -39,7 +39,7 @@ const Checkout = (props) => {
     const formIsValid =
       enteredNameIsValid &&
       enteredNumberIsValid &&
-      enteredDescriptionIsValid &&
+      // enteredDescriptionIsValid &&
       enteredTableNumberIsValid;
 
     if (!formIsValid) return;
@@ -51,6 +51,7 @@ const Checkout = (props) => {
       description: enteredDescription,
     });
   };
+
   return (
     <form className="my-4 mx-0 h-[19rem] overflow-auto" onSubmit={handleSubmit}>
       <div className="mb-2">
@@ -122,9 +123,7 @@ const Checkout = (props) => {
           Instructions
         </label>
         <input
-          className={`font-inherit custom-border rounded w-80 max-w-full ${
-            formInputsValidity.description ? "" : "border-red-550 bg-red-75"
-          }`}
+          className={`font-inherit custom-border rounded w-80 max-w-full `}
           type="text"
           id="description"
           ref={descriptionInputRef}

@@ -34,7 +34,7 @@ const Cart = (props) => {
   //       number: number,
   //     };
 
-  const handleSubmitOrder = async () => {
+  const handleSubmitOrder = async (info) => {
     setIsSubmitting(true);
     await fetch(`${API}/order/create/`, {
       method: "POST",
@@ -42,7 +42,12 @@ const Cart = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        products: cartContext.items,
+        orderedItems: cartContext.items,
+        amount: cartContext.totalAmount,
+        name: info.name,
+        mobileNumber: info.number,
+        tableNumber: info.tableNumber,
+        instruction: info.description,
       }),
     });
     setIsSubmitting(false);
@@ -93,8 +98,14 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onCancel={props.onHideCart} onSubmit={handleSubmitOrder} />
+        <Checkout
+          onCancel={props.onHideCart}
+          onSubmit={(info) => {
+            handleSubmitOrder(info);
+          }}
+        />
       )}
+
       {!isCheckout && modalActions}
     </>
   );
