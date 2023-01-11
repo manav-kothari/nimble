@@ -6,7 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
 import Menu from "../components/Menu";
 
-const Orders = ({ match }) => {
+const AllOrders = ({ match }) => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -77,13 +77,16 @@ const Orders = ({ match }) => {
       ) : (
         <div className="page page3">
           <div className="p-3">
-            <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
+            <Link
+              to="/superadmin/dashboard"
+              className="btn btn-md btn-dark mb-3"
+            >
               Go Back
             </Link>
             {/* <button onClick={refreshPage}>Refresh</button> */}
             <div className="container">
               <h3 className="text-dark text-center p-2 headingalt">
-                All Orders :
+                All Restaurants Orders :
               </h3>
             </div>
             <Table
@@ -110,12 +113,6 @@ const Orders = ({ match }) => {
               <tbody className="text-center text-dark">
                 {orders.map((order) => (
                   <tr key={order._id}>
-                    {/* <td>{order.user.name}</td>  */}
-                    {/* <td>₹{order.amount / 100}</td> */}
-
-                    {/* <td>{order.instruction}</td>
-                    <td>{order.branch}</td>
-                    <td>{order.number}</td> */}
                     <td>{order.timestamp}</td>
                     <td>{order.tableNumber}</td>
                     <td>
@@ -181,4 +178,4 @@ const Orders = ({ match }) => {
   );
 };
 
-export default Orders;
+export default AllOrders;

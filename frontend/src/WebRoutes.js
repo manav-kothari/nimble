@@ -11,9 +11,9 @@ import ManageCategory from "./restaurant/ManageCategory";
 import ManageProducts from "./restaurant/ManageProducts";
 import ManageProfile from "./restaurant/ManageProfile";
 import ManageRestaurants from "./restaurant/ManageRestaurants";
-import Orders from "./restaurant/Orders";
 import UpdateProduct from "./restaurant/UpdateProduct";
 import AddRestaurantProduct from "./superadmin/AddRestaurantProduct";
+import AllOrders from "./superadmin/AllOrders";
 import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
 import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
@@ -27,7 +27,7 @@ const WebRoutes = () => {
         <Route path="/signin" element={<Signin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/superadmin/dashboard" element={<SuperAdminDashboard />} />
-        <Route path="/admin/orders/" element={<Orders />} />
+        <Route path="/superadmin/allorders/" element={<AllOrders />} />
         <Route path="/admin/create/category" element={<AddCategory />} />
         <Route path="/admin/categories" element={<ManageCategory />} />
         <Route path="/admin/create/product" element={<AddProduct />} />

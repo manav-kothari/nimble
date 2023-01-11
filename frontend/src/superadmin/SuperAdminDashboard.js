@@ -23,7 +23,7 @@ const SuperAdminDashboard = ({ history }) => {
             </Button>
             <Button className="list-group-item">
               <Link
-                to="/admin/orders"
+                to="/superadmin/allorders/"
                 className="nav-link text-light text-center bg-primary text-capitalize h5"
               >
                 All Orders
