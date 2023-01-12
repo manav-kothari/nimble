@@ -15,6 +15,7 @@ const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const logoRoutes = require("./routes/logo");
 const orderRoutes = require("./routes/order");
+const carouselRoutes = require("./routes/carousel");
 
 //DB Connection
 mongoose
@@ -38,6 +39,7 @@ app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api", logoRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", carouselRoutes);
 
 var __dirname = path.resolve();
 
