@@ -64,7 +64,6 @@ export const signout = (next) => {
   }
 };
 
-//product
 // export const getProducts = (
 //   keyword = "",
 //   userId = "",
@@ -101,11 +100,14 @@ export const createaProduct = (userId, token, product) => {
     .catch((err) => console.log(err));
 };
 
-// //get all products
-export const getProducts = (userId) => {
-  return fetch(`${API}/products?userId=${userId}`, {
-    method: "GET",
-  })
+//get all products
+export const getProducts = (userId, categoryName = "") => {
+  return fetch(
+    `${API}/products?userId=${userId}&categoryName=${categoryName}`,
+    {
+      method: "GET",
+    }
+  )
     .then((response) => {
       return response.json();
     })

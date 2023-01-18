@@ -118,9 +118,9 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const populatecategory = req.query.categoryName
+  const populatecategory = req.query.categoryId
     ? {
-        category: req.query.categoryName,
+        category: req.query.categoryId,
       }
     : {};
 

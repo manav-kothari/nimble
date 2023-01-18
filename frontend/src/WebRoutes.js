@@ -62,6 +62,7 @@ const WebRoutes = () => {
           element={<UpdateRestaurantProduct />}
         />
         <Route path="/menu/:userId" element={<App />} />
+        <Route path="/menu/:userId/category/:categoryId" element={<App />} />
       </Routes>
       <Footer />
     </Router>
