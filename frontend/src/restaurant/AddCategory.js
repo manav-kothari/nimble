@@ -8,10 +8,12 @@ import Menu from "../components/Menu";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
+  const [rank, setRank] = useState(0);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const { user, token } = isAuthenticated();
+  const userId = user._id;
 
   const successMessage = () => {
     if (success) {
@@ -44,8 +46,29 @@ const AddCategory = () => {
             value={name}
             autoFocus
             required
-            placeholder="Ex. Cake"
+            placeholder="Ex. Burger"
           />
+          <div className="form-group my-2">
+            <select
+              onChange={handleChangeRank}
+              value={rank}
+              className="form-control"
+              placeholder="Rank"
+            >
+              <option>Select Ranking</option>
+
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+            </select>
+          </div>
           <button
             onClick={onSubmit}
             className="btn btn-md btn-outline-success btn-block"
@@ -70,13 +93,18 @@ const AddCategory = () => {
     setName(event.target.value);
   };
 
+  const handleChangeRank = (event) => {
+    setError("");
+    setRank(event.target.value);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     setError("");
     setSuccess(false);
 
     //backend request fired
-    createCategory(user._id, token, { name }).then((data) => {
+    createCategory(user._id, token, { name, rank, userId }).then((data) => {
       if (data.error) {
         setError(true);
       } else {
