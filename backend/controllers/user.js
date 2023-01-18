@@ -103,3 +103,20 @@ exports.getAllUsers = (req, res) => {
     res.json({ users: users });
   });
 };
+
+exports.pushCategoryInCategoryList = (req, res) => {
+  let categories = [];
+  req.body((category) => {
+    categories.push({
+      _id: category._id,
+      name: category.name,
+      rank: category.rank,
+    });
+    if (err) {
+      return res.status(400).json({
+        error: "Error while saving!",
+      });
+    }
+    res.json({ categories });
+  });
+};

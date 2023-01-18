@@ -31,6 +31,10 @@ var userSchema = new mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
+    categories: {
+      type: Array,
+      default: [],
+    },
     resetToken: String,
     expireToken: Date,
     salt: String,

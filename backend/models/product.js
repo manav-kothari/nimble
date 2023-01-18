@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -13,12 +14,16 @@ const productSchema = new mongoose.Schema({
     maxlength: 32,
     trim: true,
   },
-  // category: {
-  //   type: String,
-  //   required: true,
-  // },
+  category: {
+    type: ObjectId,
+    ref: "Category",
+    required: true,
+  },
   description: {
     type: String,
+    trim: true,
+    required: true,
+    maxlength: 2000,
   },
   userId: {
     type: String,
