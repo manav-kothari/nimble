@@ -4,11 +4,13 @@ import {
   isAuthenticated,
   getProduct,
   updateProduct,
+  getCategories,
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
 const UpdateProduct = ({ match }) => {
   const { user, token } = isAuthenticated();
+  const userId = user._id;
 
   const [values, setValues] = useState({
     name: "",
@@ -18,32 +20,56 @@ const UpdateProduct = ({ match }) => {
     error: "",
     createdProduct: "",
     formData: "",
+    categories: [],
+    category: "",
   });
   const { productId } = useParams();
 
-  const { name, price, loading, error, description, createdProduct, formData } =
-    values;
+  const {
+    name,
+    price,
+    categories,
+    loading,
+    error,
+    description,
+    createdProduct,
+    formData,
+  } = values;
 
-  const preload = (productId) => {
+  const preload = (productId, userId) => {
     getProduct(productId).then((data) => {
       // console.log(data);
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
+        preloadCategories(userId);
         setValues({
           ...values,
           name: data.name,
           description: data.description,
           price: data.price,
+          category: data.category.name,
           formData: new FormData(),
         });
       }
     });
   };
 
+  const preloadCategories = (userId) => {
+    getCategories({ userId }).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          categories: data.categories,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
   useEffect(() => {
     setValues({ ...values, loading: true });
-    preload(productId);
+    preload(productId, userId);
     // eslint-disable-next-line
   }, []);
 
@@ -119,6 +145,22 @@ const UpdateProduct = ({ match }) => {
           placeholder="Original Price"
           value={price}
         />
+      </div>
+      Category:
+      <div className="form-group my-2">
+        <select
+          onChange={handleChange("category")}
+          className="form-control"
+          placeholder="Category"
+        >
+          <option>Select Category</option>
+          {categories &&
+            categories.map((cate, index) => (
+              <option key={index} value={cate._id}>
+                {cate.name}
+              </option>
+            ))}
+        </select>
       </div>
       Description:
       <div className="form-group">

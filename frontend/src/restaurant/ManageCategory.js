@@ -14,20 +14,21 @@ const ManageCategory = () => {
   const [error, setError] = useState(false);
 
   const { user, token } = isAuthenticated();
+  const userId = user._id;
 
   const preload = () => {
-    getCategories().then((data) => {
+    getCategories({ userId }).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
-        setCategories(data);
+        setCategories(data.categories);
         setLoading(false);
       }
     });
   };
 
   useEffect(() => {
-    // preload();
+    preload();
   }, []);
 
   const deleteThisCategory = (productId) => {
@@ -46,7 +47,7 @@ const ManageCategory = () => {
       loading && (
         <div className="alert alert-info text-center blink_me p-2">
           <h2>TO DO!</h2>
-          {/* <h2>Loading...</h2> */}
+          <h2>Loading...</h2>
         </div>
       )
     );

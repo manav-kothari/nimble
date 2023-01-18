@@ -12,6 +12,7 @@ import ManageCategory from "./restaurant/ManageCategory";
 import ManageProducts from "./restaurant/ManageProducts";
 import ManageProfile from "./restaurant/ManageProfile";
 import ManageRestaurants from "./restaurant/ManageRestaurants";
+import UpdateCategory from "./restaurant/UpdateCategory";
 import UpdateProduct from "./restaurant/UpdateProduct";
 import AddRestaurantProduct from "./superadmin/AddRestaurantProduct";
 import AllOrders from "./superadmin/AllOrders";
@@ -37,6 +38,10 @@ const WebRoutes = () => {
         <Route
           path="/admin/product/update/:productId"
           element={<UpdateProduct />}
+        />
+        <Route
+          path="/admin/category/update/:categoryId"
+          element={<UpdateCategory />}
         />
         <Route path="/profile" element={<ManageProfile />} />
         <Route path="/admin/restaurants" element={<ManageRestaurants />} />

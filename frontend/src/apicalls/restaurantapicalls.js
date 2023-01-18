@@ -250,8 +250,8 @@ export const createCategory = (userId, token, category) => {
 };
 
 //get all categories
-export const getCategories = () => {
-  return fetch(`${API}/categories`, {
+export const getCategories = ({ userId }) => {
+  return fetch(`${API}/categories?userId=${userId}`, {
     method: "GET",
   })
     .then((response) => {
@@ -268,6 +268,35 @@ export const deleteCategory = (categoryId, userId, token) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//get a category
+export const getaCategory = (categoryId) => {
+  return fetch(`${API}/category/${categoryId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//update a category
+export const updateCategory = (userId, token, category, categoryId) => {
+  return fetch(`${API}/category/${categoryId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+
+    body: JSON.stringify(category),
   })
     .then((response) => {
       return response.json();

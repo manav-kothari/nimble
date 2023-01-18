@@ -1,4 +1,6 @@
 const Category = require("../models/category");
+const asyncHandler = require("express-async-handler");
+const category = require("../models/category");
 
 exports.getCategoryById = (req, res, next, id) => {
   Category.findById(id).exec((err, cate) => {
@@ -39,9 +41,38 @@ exports.getAllCategory = (req, res) => {
   });
 };
 
+exports.getCategoryByUser = asyncHandler(async (req, res) => {
+  let sortBy = req.query.sortBy ? req.query.sortBy : "createdAt";
+  let sortByOrder = req.query.sortByOrder ? req.query.sortByOrder : "-1";
+
+  const userId = req.query.userId
+    ? {
+        userId: req.query.userId,
+      }
+    : {};
+
+  category
+    .find({ ...userId })
+    // .select("-photo")
+    // .populate({ ...populatecategory })
+    .sort([[sortBy, sortByOrder]])
+    // .limit(pageSize)
+    // .skip(pageSize * (page - 1))
+
+    .exec((err, categories) => {
+      if (err) {
+        return res.status(400).json({
+          error: "NO product FOUND",
+        });
+      }
+      res.json({ categories: categories });
+    });
+});
+
 exports.updateCategory = (req, res) => {
   const category = req.category;
   category.name = req.body.name;
+  category.rank = req.body.rank;
 
   category.save((err, updatedCategory) => {
     if (err) {

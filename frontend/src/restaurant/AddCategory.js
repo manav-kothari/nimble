@@ -49,6 +49,7 @@ const AddCategory = () => {
             placeholder="Ex. Burger"
           />
           <div className="form-group my-2">
+            <label htmlFor="">Rank:</label>
             <select
               onChange={handleChangeRank}
               value={rank}
