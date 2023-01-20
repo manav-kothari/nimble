@@ -89,17 +89,19 @@ const ManageProfile = ({ match }) => {
               />
             </div>
 
-            <div className="form-group my-2">
-              <label className="text-dark">Logo:</label>
-              <a
-                href="/admin/logo"
-                class="btn btn-secondary btn-sm active ml-3"
-                role="button"
-                aria-pressed="true"
-              >
-                Add
-              </a>
-            </div>
+            {isAuthenticated() && isAuthenticated().user.role == 1 && (
+              <div className="form-group my-2">
+                <label className="text-dark">Logo:</label>
+                <a
+                  href="/admin/logo"
+                  class="btn btn-secondary btn-sm active ml-3"
+                  role="button"
+                  aria-pressed="true"
+                >
+                  Add
+                </a>
+              </div>
+            )}
 
             <div className="form-group my-2">
               <label className="text-dark">Email:</label>

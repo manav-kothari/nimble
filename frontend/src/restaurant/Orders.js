@@ -12,7 +12,7 @@ const Orders = ({ match }) => {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState("");
-  const MINUTE_MS = 60000;
+  const MINUTE_MS = 30000;
 
   // const pageNumber = match.params.pageNumber || 1;
   const pageNumber = 1;

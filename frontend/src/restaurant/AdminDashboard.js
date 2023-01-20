@@ -9,6 +9,8 @@ const AdminDashboard = ({ history }) => {
   //   user: { name, email, role },
   // } = isAuthenticated();
 
+  const userId = isAuthenticated().user._id;
+
   const adminfront = () => {
     return (
       <>
@@ -59,6 +61,14 @@ const AdminDashboard = ({ history }) => {
             </Button>
             <Button className="list-group-item">
               <Link
+                to={`/menu/${userId}`}
+                className="nav-link text-light text-center bg-primary text-capitalize h5"
+              >
+                My Menu
+              </Link>
+            </Button>
+            <Button className="list-group-item">
+              <Link
                 to="/profile"
                 className="nav-link text-light text-center bg-primary text-capitalize h5"
               >
@@ -89,16 +99,32 @@ const AdminDashboard = ({ history }) => {
   return (
     <>
       <Menu />
-      <div className="page page3">
+      <div className="page2 page3">
         {/* <div className="p-2">
           <Link to="/" className="btn btn btn-outline-primary">
             Go to Home Page
           </Link>
         </div> */}
         {isAuthenticated() && isAuthenticated().user.role !== 1 && (
-          <h4 className="text-center text-bold mt-4 text-capitalize">
-            Please contact owner to get started
-          </h4>
+          <>
+            <h4 className="text-center text-bold mt-4 text-capitalize">
+              Please contact owner to get started
+            </h4>
+            <Button className="list-group-item">
+              <Link
+                onClick={() => {
+                  if (window.confirm("You will be signed out!")) {
+                    signout(() => {
+                      history.push("/");
+                    });
+                  }
+                }}
+                className="nav-link text-dark text-center bg-warning text-capitalize h5"
+              >
+                Sign Out
+              </Link>
+            </Button>
+          </>
         )}
         {isAuthenticated() && isAuthenticated().user.role === 1 && (
           <div className="container p-2">

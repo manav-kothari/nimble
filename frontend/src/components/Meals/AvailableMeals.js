@@ -14,6 +14,7 @@ const AvailableMeals = ({ match }) => {
   const [categories, setCategories] = useState([]);
 
   const { userId } = useParams();
+  const { categoryId } = useParams();
 
   const preloadCategories = (userId) => {
     getCategories({ userId }).then((data) => {
@@ -24,8 +25,8 @@ const AvailableMeals = ({ match }) => {
       }
     });
   };
-  const loadAllProduct = (userId) => {
-    getProducts(userId).then((data) => {
+  const loadAllProduct = (userId, categoryId) => {
+    getProducts(userId, categoryId).then((data) => {
       if (data.error) {
         setError(data.error);
         console.log("fucked");
@@ -39,7 +40,7 @@ const AvailableMeals = ({ match }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    loadAllProduct(userId);
+    loadAllProduct(userId, categoryId);
     preloadCategories(userId);
   }, [userId]);
 
@@ -81,9 +82,13 @@ const AvailableMeals = ({ match }) => {
         <div className="container-fluid px-3">
           <Row>
             <Col className="mb-3">
-              <Dropdown className="text-center">
-                <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                  Filter by Category
+              <Dropdown className="text-center ">
+                <Dropdown.Toggle
+                  variant="dark"
+                  id="dropdown-basic"
+                  style={{ backgroundColor: "#0f172a" }}
+                >
+                  <span className="text-capitalize">Filter by Category</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {categories &&

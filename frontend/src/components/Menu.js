@@ -1,8 +1,12 @@
 import React from "react";
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import { isAuthenticated } from "../apicalls/restaurantapicalls";
 import logo from "../logo2.png";
 
 const Menu = () => {
+  // const { user, token } = isAuthenticated();
+  // const userId = user._id;
+
   return (
     <>
       <Navbar fixed="top" bg="light" expand="lg">
@@ -18,11 +22,13 @@ const Menu = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* <Nav className="me-auto">
-              <Nav.Link href="#home" className="text-dark">
-                Home
-              </Nav.Link>
-            </Nav> */}
+            {/* {isAuthenticated() && isAuthenticated().user.role === 1 && (
+              <Nav className="me-auto">
+                <Nav.Link href={`/menu/${userId}`} className="text-dark">
+                  <h5 className="text-capitalize">My Menu</h5>
+                </Nav.Link>
+              </Nav>
+            )} */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -101,13 +101,10 @@ export const createaProduct = (userId, token, product) => {
 };
 
 //get all products
-export const getProducts = (userId, categoryName = "") => {
-  return fetch(
-    `${API}/products?userId=${userId}&categoryName=${categoryName}`,
-    {
-      method: "GET",
-    }
-  )
+export const getProducts = (userId, categoryId = "") => {
+  return fetch(`${API}/products?userId=${userId}&categoryId=${categoryId}`, {
+    method: "GET",
+  })
     .then((response) => {
       return response.json();
     })
