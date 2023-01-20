@@ -91,6 +91,13 @@ const AvailableMeals = ({ match }) => {
                   <span className="text-capitalize">Filter by Category</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+                  <Dropdown.Item
+                    href={`/menu/${userId}/`}
+                    className="h4 font-weight-bold"
+                  >
+                    All Items
+                  </Dropdown.Item>
+
                   {categories &&
                     categories.map((cate, index) => (
                       <Dropdown.Item
