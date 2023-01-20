@@ -104,7 +104,8 @@ exports.updateProduct = (req, res) => {
 exports.getAllProducts = asyncHandler(async (req, res) => {
   let sortBy = req.query.sortBy ? req.query.sortBy : "createdAt";
   let sortByOrder = req.query.sortByOrder ? req.query.sortByOrder : "-1";
-  // const categoryName = req.query.categoryName ? req.query.categoryName : "";
+  const userId = req.query.userId ? req.query.userId : "";
+  const categoryId = req.query.categoryId ? req.query.categoryId : "";
   const page = Number(req.query.pageNumber) || 1;
   const pageSize = 15;
 
@@ -113,37 +114,48 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
         $or: [
           { name: { $regex: req.query.keyword, $options: "i" } },
           { description: { $regex: req.query.keyword, $options: "i" } },
-          { category: { $regex: req.query.keyword, $options: "i" } },
         ],
       }
     : {};
 
   const populatecategory = req.query.categoryId
     ? {
-        category: req.query.categoryId,
+        path: "category",
+        match: {
+          _id: req.query.categoryId,
+        },
       }
-    : {};
+    : { path: "category" };
 
-  const userId = req.query.userId
-    ? {
-        userId: req.query.userId,
-      }
-    : {};
-
-  Product.find({ ...keyword, ...userId, ...populatecategory })
-    // .select("-photo")
-    // .populate({ ...populatecategory })
+  Product.find({ userId: `${userId}` })
+    .select("-photo")
+    .populate({ ...populatecategory })
     .sort([[sortBy, sortByOrder]])
     // .limit(pageSize)
     // .skip(pageSize * (page - 1))
 
-    .exec((err, products) => {
+    .exec(function (
+      err,
+      products,
+      page = Number(req.query.pageNumber) || 1,
+      pages
+    ) {
+      products = products.filter(function (product) {
+        return product.category;
+      });
+
       if (err) {
         return res.status(400).json({
-          error: "NO product FOUND",
+          error: "NO Product FOUND!",
         });
       }
-      res.json({ products: products });
+      count = products.length;
+
+      res.json({
+        products: products.slice(pageSize * (page - 1), pageSize * page),
+        page,
+        pages: Math.ceil(count / pageSize),
+      });
     });
 });
 
