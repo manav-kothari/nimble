@@ -44,16 +44,6 @@ const AvailableMeals = ({ match }) => {
     preloadCategories(userId);
   }, [userId]);
 
-  const mealsList = meals.map((meal) => (
-    <MealItem
-      id={meal._id}
-      key={meal._id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
-  ));
-
   console.log(meals);
 
   if (isLoading) {
@@ -114,9 +104,27 @@ const AvailableMeals = ({ match }) => {
             </Col>
           </Row>
         </div>
-        <Card>
-          <ul className="list-none m-0 p-0">{mealsList}</ul>
-        </Card>
+        {categories &&
+          categories.map((cate, index) => (
+            <div className="h4 font-weight-bold" key={index} value={cate._id}>
+              {cate.name}
+              <Card>
+                <ul className="list-none m-0 p-0">
+                  {meals.map((meal) => (
+                    <MealItem
+                      id={meal._id}
+                      key={meal._id}
+                      name={meal.name}
+                      description={meal.description}
+                      price={meal.price}
+                      mealCateId={meal.category._id}
+                      cateId={cate._id}
+                    />
+                  ))}
+                </ul>
+              </Card>
+            </div>
+          ))}
       </section>
     </>
   );

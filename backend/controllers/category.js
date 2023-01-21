@@ -42,8 +42,8 @@ exports.getAllCategory = (req, res) => {
 };
 
 exports.getCategoryByUser = asyncHandler(async (req, res) => {
-  let sortBy = req.query.sortBy ? req.query.sortBy : "createdAt";
-  let sortByOrder = req.query.sortByOrder ? req.query.sortByOrder : "-1";
+  let sortBy = req.query.sortBy ? req.query.sortBy : "rank";
+  let sortByOrder = req.query.sortByOrder ? req.query.sortByOrder : "1";
 
   const userId = req.query.userId
     ? {

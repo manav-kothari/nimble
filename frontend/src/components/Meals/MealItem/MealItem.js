@@ -7,7 +7,7 @@ const MealItem = (props) => {
   const cartContext = useContext(CartContext);
   const price = `₹${props.price.toFixed(2)}`;
 
-  const handleAddToCart = (amount) => {
+  const handleAddToCart = (amount, { cateId, mealCateId }) => {
     cartContext.addItem({
       id: props.id,
       name: props.name,
@@ -16,17 +16,28 @@ const MealItem = (props) => {
     });
   };
 
+  const cateId = props.cateId;
+  const mealCateId = props.mealCateId;
+
   return (
-    <li className="flex justify-between m-4 pb-4 border-bottom">
-      <div>
-        <h3 className="mt-0 mx-0 mb-1">{props.name}</h3>
-        <div className="italic">{props.description}</div>
-      </div>
-      <div>
-        <div className=" font-bold text-black-550 float-right">{price}</div>
-        <MealItemForm id={props.id} onAddToCart={handleAddToCart} />
-      </div>
-    </li>
+    <>
+      {cateId == mealCateId && (
+        <div>
+          <li className="flex justify-between m-4 pb-4 border-bottom">
+            <div>
+              <h3 className="mt-0 mx-0 mb-1">{props.name}</h3>
+              <div className="italic">{props.description}</div>
+            </div>
+            <div>
+              <div className=" font-bold text-black-550 float-right">
+                {price}
+              </div>
+              <MealItemForm id={props.id} onAddToCart={handleAddToCart} />
+            </div>
+          </li>
+        </div>
+      )}
+    </>
   );
 };
 
