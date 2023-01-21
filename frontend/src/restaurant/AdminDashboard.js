@@ -59,6 +59,23 @@ const AdminDashboard = ({ history }) => {
                 Manage Menu Items
               </Link>
             </Button>
+
+            <Button className="list-group-item">
+              <Link
+                to="/admin/create/carousel"
+                className="nav-link text-light text-center bg-primary text-capitalize h5"
+              >
+                Add Carusel Images
+              </Link>
+            </Button>
+            <Button className="list-group-item">
+              <Link
+                to="/admin/carousel"
+                className="nav-link text-light text-center bg-primary text-capitalize h5"
+              >
+                Manage Carousel Images
+              </Link>
+            </Button>
             <Button className="list-group-item">
               <Link
                 to={`/menu/${userId}`}

@@ -5,7 +5,14 @@ import { getProducts, getCategories } from "../../apicalls/restaurantapicalls";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import { useParams } from "react-router-dom";
-import { Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 
 const AvailableMeals = ({ match }) => {
   const [meals, setMeals] = useState([]);
@@ -49,11 +56,21 @@ const AvailableMeals = ({ match }) => {
   if (isLoading) {
     return (
       <>
-        <section className="text-center p-4 bg-white shadow-md rounded-2xl max-w-[60rem] w-[90%] my-8 mx-auto">
-          <IconContext.Provider value={{ className: "spinner" }}>
-            <ImSpinner9 />
-          </IconContext.Provider>
-        </section>
+        <Container className="p-5 my-5">
+          <Spinner
+            animation="border"
+            role="status"
+            style={{
+              width: "100px",
+              height: "100px",
+              margin: "auto",
+              display: "block",
+              color: "black",
+              marginTop: "250px",
+              marginBottom: "250px",
+            }}
+          ></Spinner>
+        </Container>
       </>
     );
   }

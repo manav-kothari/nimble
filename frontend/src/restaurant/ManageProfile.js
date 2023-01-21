@@ -93,7 +93,7 @@ const ManageProfile = ({ match }) => {
               <div className="form-group my-2">
                 <label className="text-dark">Logo:</label>
                 <a
-                  href="/admin/logo"
+                  href="/admin/create/carousel"
                   class="btn btn-secondary btn-sm active ml-3"
                   role="button"
                   aria-pressed="true"

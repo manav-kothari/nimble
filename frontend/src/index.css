@@ -246,3 +246,21 @@ footer {
 .page3{
   margin-top: 100px;
 }
+
+
+/* carousel */
+/* .carousel-item-next,
+.carousel-item-prev, */
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel img {
+  height: 325px;
+  align-items: center;
+  margin: auto;
+  margin-top: 90px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}

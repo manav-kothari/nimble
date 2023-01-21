@@ -93,7 +93,8 @@ exports.deleteCarousel = (req, res) => {
 //carousel listing
 
 exports.getAllCarousel = (req, res) => {
-  Carousel.find()
+  const userId = req.query.userId ? req.query.userId : "";
+  Carousel.find({ userId: `${userId}` })
     .select("-photo")
     .sort({ createdAt: -1 })
     .exec((err, carousel) => {

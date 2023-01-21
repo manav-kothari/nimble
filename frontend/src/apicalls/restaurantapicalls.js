@@ -302,3 +302,48 @@ export const updateCategory = (userId, token, category, categoryId) => {
     })
     .catch((err) => console.log(err));
 };
+
+/////***carousel calls***/////
+
+//Create
+export const createaCarousel = (userId, token, carousel) => {
+  return fetch(`${API}/carousel/create/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+
+    body: carousel,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//delete
+export const deleteCarousel = (carouselId, userId, token) => {
+  return fetch(`${API}/carousel/${carouselId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//get
+export const getCarousel = (userId) => {
+  return fetch(`${API}/carousel?userId=${userId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

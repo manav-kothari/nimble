@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import HomePage from "./HomePage";
 import AddCategory from "./restaurant/AddCategory";
 import AddProduct from "./restaurant/AddProduct";
+import AddCarousel from "./restaurant/AddCarousel";
 import AdminDashboard from "./restaurant/AdminDashboard";
 import ManageCategory from "./restaurant/ManageCategory";
 import ManageProducts from "./restaurant/ManageProducts";
@@ -20,6 +21,7 @@ import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
 import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
 import UpdateRestaurantProduct from "./superadmin/UpdateRestaurantProduct";
+import ManageCarousel from "./restaurant/ManageCarousel";
 
 const WebRoutes = () => {
   return (
@@ -34,7 +36,9 @@ const WebRoutes = () => {
         <Route path="/admin/create/category" element={<AddCategory />} />
         <Route path="/admin/categories" element={<ManageCategory />} />
         <Route path="/admin/create/product" element={<AddProduct />} />
+        <Route path="/admin/create/carousel" element={<AddCarousel />} />
         <Route path="/admin/products" element={<ManageProducts />} />
+        <Route path="/admin/carousel" element={<ManageCarousel />} />
         <Route
           path="/admin/product/update/:productId"
           element={<UpdateProduct />}
