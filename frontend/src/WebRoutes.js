@@ -22,6 +22,7 @@ import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
 import UpdateRestaurantProduct from "./superadmin/UpdateRestaurantProduct";
 import ManageCarousel from "./restaurant/ManageCarousel";
+import ManageOrders from "./restaurant/ManageOrders";
 
 const WebRoutes = () => {
   return (
@@ -38,6 +39,7 @@ const WebRoutes = () => {
         <Route path="/admin/create/product" element={<AddProduct />} />
         <Route path="/admin/create/carousel" element={<AddCarousel />} />
         <Route path="/admin/products" element={<ManageProducts />} />
+        <Route path="/admin/orders" element={<ManageOrders />} />
         <Route path="/admin/carousel" element={<ManageCarousel />} />
         <Route
           path="/admin/product/update/:productId"

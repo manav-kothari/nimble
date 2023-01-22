@@ -347,3 +347,20 @@ export const getCarousel = (userId) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const updateOrder = (userId, token, order, orderId) => {
+  return fetch(`${API}/order/${orderId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+
+    body: JSON.stringify(order),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

@@ -91,6 +91,20 @@ exports.getAllOrders = (req, res) => {
     });
 };
 
+exports.updateOrder = (req, res) => {
+  const order = req.order;
+  order.status = req.body.status;
+
+  order.save((err, updatedOrder) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Failed to update order",
+      });
+    }
+    res.json(updatedOrder);
+  });
+};
+
 exports.getOrderStatus = (req, res) => {
   res.json(Order.schema.path("status").enumValues);
 };

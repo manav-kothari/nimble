@@ -30,11 +30,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // status: {
-  //   type: String,
-  //   default: "Recieved",
-  //   enum: ["Cancelled", "Completed", "Shipped", "Preparing", "Recieved"],
-  // },
+  status: {
+    type: String,
+    default: "Recieved",
+  },
 
   //   user: {
   //     type: ObjectId,
