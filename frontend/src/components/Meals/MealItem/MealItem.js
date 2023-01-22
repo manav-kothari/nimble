@@ -7,7 +7,7 @@ const MealItem = (props) => {
   const cartContext = useContext(CartContext);
   const price = `₹${props.price.toFixed(2)}`;
 
-  const handleAddToCart = (amount, { cateId, mealCateId }) => {
+  const handleAddToCart = (amount) => {
     cartContext.addItem({
       id: props.id,
       name: props.name,
@@ -18,6 +18,7 @@ const MealItem = (props) => {
 
   const cateId = props.cateId;
   const mealCateId = props.mealCateId;
+  const mealName = props.mealName;
 
   return (
     <>

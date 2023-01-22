@@ -86,7 +86,7 @@ const AvailableMeals = ({ match }) => {
   return (
     <>
       <section className="max-w-[60rem] w-[90%] my-8 mx-auto animate-meals-appear">
-        <div className="container-fluid px-3">
+        {/* <div className="container-fluid px-3">
           <Row>
             <Col className="mb-3">
               <Dropdown className="text-center ">
@@ -120,7 +120,7 @@ const AvailableMeals = ({ match }) => {
               </Dropdown>
             </Col>
           </Row>
-        </div>
+        </div> */}
         {categories &&
           categories.map((cate, index) => (
             <div className="h4 font-weight-bold" key={index} value={cate._id}>
@@ -135,6 +135,7 @@ const AvailableMeals = ({ match }) => {
                       description={meal.description}
                       price={meal.price}
                       mealCateId={meal.category._id}
+                      mealName={meal.name}
                       cateId={cate._id}
                     />
                   ))}
