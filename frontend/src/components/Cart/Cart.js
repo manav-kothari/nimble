@@ -4,12 +4,14 @@ import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
+import { useParams } from "react-router-dom";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const cartContext = useContext(CartContext);
+  const { userId } = useParams();
 
   const totalAmount = `₹${cartContext.totalAmount.toFixed(2)}`;
   const hasItems = cartContext.items.length > 0;
@@ -48,6 +50,7 @@ const Cart = (props) => {
         mobileNumber: info.number,
         tableNumber: info.tableNumber,
         instruction: info.description,
+        userId: userId,
       }),
     });
     setIsSubmitting(false);

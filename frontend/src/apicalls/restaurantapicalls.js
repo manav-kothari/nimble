@@ -222,7 +222,7 @@ export const getUsers = () => {
 /****** Orders ******/
 
 export const getAllOrders = (userId, token, pageNumber) => {
-  return fetch(`${API}/order/all/`, {
+  return fetch(`${API}/order/all?userId=${userId}`, {
     method: "GET",
   })
     .then((response) => {

@@ -26,6 +26,10 @@ const OrderSchema = new mongoose.Schema({
   mobileNumber: { type: Number },
   tableNumber: { type: String },
   instruction: { type: String, maxlength: 2000 },
+  userId: {
+    type: String,
+    required: true,
+  },
   // status: {
   //   type: String,
   //   default: "Recieved",

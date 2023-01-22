@@ -13,7 +13,7 @@ const ManageProfile = ({ match }) => {
     name: "",
     email: "",
     number: "",
-
+    password: "",
     error: "",
     loading: false,
     success: false,
@@ -44,7 +44,7 @@ const ManageProfile = ({ match }) => {
     // eslint-disable-next-line
   }, []);
 
-  const { name, email, number, error, loading, success } = values;
+  const { name, email, number, error, loading, password, success } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -63,7 +63,7 @@ const ManageProfile = ({ match }) => {
             name: "",
             email: "",
             number: "",
-
+            password: "",
             error: "",
             loading: false,
             success: true,
@@ -122,6 +122,17 @@ const ManageProfile = ({ match }) => {
                 type="number"
                 value={number}
                 placeholder="Enter Number"
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="text-dark">Password:</label>
+              <input
+                onChange={handleChange("password")}
+                style={{ backgroundColor: "#F0F0F0" }}
+                className="form-control"
+                type="password"
+                value={password}
               />
             </div>
 
