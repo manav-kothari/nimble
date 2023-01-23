@@ -144,7 +144,7 @@ export default function ManageRestaurants({ match }) {
                       </Link>
                     </td>
                     <td>
-                      <Link to={`/admin/restaurants`}>
+                      <Link to={``}>
                         <span className="btn btn-danger text-capitalize">
                           Delete
                         </span>

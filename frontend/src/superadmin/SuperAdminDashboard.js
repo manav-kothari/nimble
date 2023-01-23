@@ -21,14 +21,14 @@ const SuperAdminDashboard = ({ history }) => {
                 Manage Restaurants
               </Link>
             </Button>
-            <Button className="list-group-item">
+            {/* <Button className="list-group-item">
               <Link
                 to="/superadmin/allorders/"
                 className="nav-link text-light text-center bg-primary text-capitalize h5"
               >
                 All Orders
               </Link>
-            </Button>
+            </Button> */}
 
             <Button className="list-group-item">
               <Link
