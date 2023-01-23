@@ -7,7 +7,7 @@ import {
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
-const UpdateCategory = ({ match }) => {
+const UpdateRestaurantCategory = ({ match }) => {
   const { user, token } = isAuthenticated();
   const { categoryId } = useParams();
   const [caterank, setCateRank] = useState(0);
@@ -171,7 +171,10 @@ const UpdateCategory = ({ match }) => {
         <>
           <Menu />
           <div className="p-3 page3 page2">
-            <Link to="/admin/categories" className="btn btn-md btn-dark mb-3">
+            <Link
+              to="/superadmin/restaurants"
+              className="btn btn-md btn-dark mb-3"
+            >
               Go Back
             </Link>
           </div>
@@ -191,4 +194,4 @@ const UpdateCategory = ({ match }) => {
   );
 };
 
-export default UpdateCategory;
+export default UpdateRestaurantCategory;

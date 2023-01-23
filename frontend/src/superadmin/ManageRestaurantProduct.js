@@ -73,7 +73,7 @@ const ManageRestaurantProduct = () => {
           <Menu />
           <div className="p-3 page3 page">
             <Link
-              to="/superadmin/dashboard"
+              to="/superadmin/restaurants"
               className="btn btn-md btn-primary mb-3"
             >
               Go Back
@@ -113,7 +113,7 @@ const ManageRestaurantProduct = () => {
                     <td>
                       <Link
                         className="btn btn-success"
-                        to={`/superadmin/product/update/${product._id}`}
+                        to={`/superadmin/restaurant/${userId}/product/update/${product._id}`}
                       >
                         <span className="">Update</span>
                       </Link>

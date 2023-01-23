@@ -4,11 +4,14 @@ import {
   isAuthenticated,
   getProduct,
   updateProduct,
+  getCategories,
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
 const UpdateRestaurantProduct = ({ match }) => {
   const { user, token } = isAuthenticated();
+  const { productId } = useParams();
+  const { userId } = useParams();
 
   const [values, setValues] = useState({
     name: "",
@@ -18,32 +21,55 @@ const UpdateRestaurantProduct = ({ match }) => {
     error: "",
     createdProduct: "",
     formData: "",
+    categories: [],
+    category: "",
   });
-  const { productId } = useParams();
 
-  const { name, price, loading, error, description, createdProduct, formData } =
-    values;
+  const {
+    name,
+    price,
+    categories,
+    loading,
+    error,
+    description,
+    createdProduct,
+    formData,
+  } = values;
 
-  const preload = (productId) => {
+  const preload = (productId, userId) => {
     getProduct(productId).then((data) => {
       // console.log(data);
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
+        preloadCategories(userId);
         setValues({
           ...values,
           name: data.name,
           description: data.description,
           price: data.price,
+          category: data.category.name,
           formData: new FormData(),
         });
       }
     });
   };
 
+  const preloadCategories = (userId) => {
+    getCategories({ userId }).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          categories: data.categories,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
   useEffect(() => {
     setValues({ ...values, loading: true });
-    preload(productId);
+    preload(productId, userId);
     // eslint-disable-next-line
   }, []);
 
@@ -53,6 +79,13 @@ const UpdateRestaurantProduct = ({ match }) => {
     setValues({ ...values, error: "", loading: true });
 
     updateProduct(productId, user._id, token, formData).then((data) => {
+      // if (name === "" && description === "") {
+      //   setValues({
+      //     ...values,
+      //     error: "Name and description can't be empty",
+      //     success: false,
+      //   });
+      // }
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -120,6 +153,22 @@ const UpdateRestaurantProduct = ({ match }) => {
           value={price}
         />
       </div>
+      Category:
+      <div className="form-group my-2">
+        <select
+          onChange={handleChange("category")}
+          className="form-control"
+          placeholder="Category"
+        >
+          <option>Select Category</option>
+          {categories &&
+            categories.map((cate, index) => (
+              <option key={index} value={cate._id}>
+                {cate.name}
+              </option>
+            ))}
+        </select>
+      </div>
       Description:
       <div className="form-group">
         <textarea
@@ -149,7 +198,7 @@ const UpdateRestaurantProduct = ({ match }) => {
           <Menu />
           <div className="p-3 page3">
             <Link
-              to={`/admin/restaurants`}
+              to="/superadmin/restaurants"
               className="btn btn-md btn-primary mb-3"
             >
               Go Back

@@ -79,6 +79,13 @@ const UpdateProduct = ({ match }) => {
     setValues({ ...values, error: "", loading: true });
 
     updateProduct(productId, user._id, token, formData).then((data) => {
+      // if (name === "" && description === "") {
+      //   setValues({
+      //     ...values,
+      //     error: "Name and description can't be empty",
+      //     success: false,
+      //   });
+      // }
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {

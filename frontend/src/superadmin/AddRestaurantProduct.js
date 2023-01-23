@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   isAuthenticated,
   createaProduct,
+  getCategories,
 } from "../apicalls/restaurantapicalls";
 import Menu from "../components/Menu";
 
@@ -14,13 +15,41 @@ const AddRestaurantProduct = () => {
     name: "",
     price: "",
     loading: false,
+    categories: [],
+    category: "",
     error: "",
     description: "",
     createdProduct: "",
     formData: new FormData(),
   });
-  const { name, price, loading, error, description, createdProduct, formData } =
-    values;
+  const {
+    name,
+    price,
+    loading,
+    categories,
+    error,
+    description,
+    createdProduct,
+    formData,
+  } = values;
+
+  const preload = () => {
+    getCategories({ userId }).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          categories: data.categories,
+          formData: new FormData(),
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    preload(userId); // eslint-disable-next-line
+  }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +63,7 @@ const AddRestaurantProduct = () => {
           name: "",
           price: "",
           description: "",
+
           category: "",
           loading: false,
           createdProduct: data.name,
@@ -106,6 +136,21 @@ const AddRestaurantProduct = () => {
           value={description}
         />
       </div>
+      <div className="form-group my-2">
+        <select
+          onChange={handleChange("category")}
+          className="form-control"
+          placeholder="Category"
+        >
+          <option>Select Category</option>
+          {categories &&
+            categories.map((cate, index) => (
+              <option key={index} value={cate._id}>
+                {cate.name}
+              </option>
+            ))}
+        </select>
+      </div>
       <button
         type="submit"
         onClick={onSubmit}
@@ -122,7 +167,7 @@ const AddRestaurantProduct = () => {
       <Menu />
       <div className="p-3 page3">
         <Link
-          to={`/superadmin/products/${userId}`}
+          to="/superadmin/restaurants"
           className="btn btn-md btn-primary mb-3"
         >
           Go Back

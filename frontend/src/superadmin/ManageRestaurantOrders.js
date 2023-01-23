@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Table, Pagination } from "react-bootstrap";
-import { getAllOrders, isAuthenticated } from "../apicalls/restaurantapicalls";
+import {
+  getAllOrders,
+  isAuthenticated,
+  updateOrder,
+} from "../apicalls/restaurantapicalls";
 import { LinkContainer } from "react-router-bootstrap";
 import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
 import Menu from "../components/Menu";
 
-const AllOrders = ({ match }) => {
+const ManageRestaurantOrders = ({ match }) => {
   const [orders, setOrders] = useState([]);
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState("");
-  const MINUTE_MS = 60000;
+  const MINUTE_MS = 30000;
 
   // const pageNumber = match.params.pageNumber || 1;
   const pageNumber = 1;
   const { user, token } = isAuthenticated();
+  const { userId } = useParams();
 
   const preload = (pageNumber) => {
-    getAllOrders(user._id, token, pageNumber).then((data) => {
+    getAllOrders(userId, token, pageNumber).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -44,6 +50,8 @@ const AllOrders = ({ match }) => {
     // eslint-disable-next-line
   }, [pageNumber]);
 
+  const onSubmit = (event, orderId, status, userId) => {};
+
   const loadingMessage = () => {
     return (
       <div className="page3 page">
@@ -67,6 +75,10 @@ const AllOrders = ({ match }) => {
     window.location.reload();
   };
 
+  const handleChange = (event) => {
+    setStatus(event.target.value);
+  };
+
   return (
     <>
       <Menu />
@@ -78,7 +90,7 @@ const AllOrders = ({ match }) => {
         <div className="page page3">
           <div className="p-3">
             <Link
-              to="/superadmin/dashboard"
+              to="/superadmin/restaurants"
               className="btn btn-md btn-dark mb-3"
             >
               Go Back
@@ -86,7 +98,7 @@ const AllOrders = ({ match }) => {
             {/* <button onClick={refreshPage}>Refresh</button> */}
             <div className="container">
               <h3 className="text-dark text-center p-2 headingalt">
-                All Restaurants Orders :
+                All Orders :
               </h3>
             </div>
             <Table
@@ -105,7 +117,8 @@ const AllOrders = ({ match }) => {
                   <th>Total Order Amount</th>
                   <th>Instruction</th>
                   <th>Cuomer's Name</th>
-                  <th>Cuomer's Mobilr Number</th>
+                  <th>Status</th>
+                  <th>Cuomer's Mobile Number</th>
                   <th>Order ID</th>
                 </tr>
               </thead>
@@ -113,6 +126,12 @@ const AllOrders = ({ match }) => {
               <tbody className="text-center text-dark">
                 {orders.map((order) => (
                   <tr key={order._id}>
+                    {/* <td>{order.user.name}</td>  */}
+                    {/* <td>₹{order.amount / 100}</td> */}
+
+                    {/* <td>{order.instruction}</td>
+                    <td>{order.branch}</td>
+                    <td>{order.number}</td> */}
                     <td>{order.timestamp}</td>
                     <td>{order.tableNumber}</td>
                     <td>
@@ -133,6 +152,47 @@ const AllOrders = ({ match }) => {
                     <td>₹ {order.amount}</td>
                     <td>{order.instruction}</td>
                     <td>{order.name}</td>
+                    <td className="font-weight-bold">
+                      {order.status}
+                      {/* <div className="form-group my-2">
+                        <select
+                          onChange={handleChange}
+                          value={status}
+                          className="form-control"
+                          placeholder="Status"
+                        >
+                          <option>Select Status</option>
+                          <option>Recieved</option>
+                          <option>Preparing</option>
+                          <option>Devlivered</option>
+                          <option>Paid</option>
+                        </select>
+                      </div> */}
+                      {/* <button
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setError("");
+                          setLoading(true);
+                          updateOrder(
+                            userId,
+                            token,
+                            { status: status },
+                            order._id
+                          ).then((data) => {
+                            if (data.error) {
+                              setError(data.error);
+                            } else {
+                              refreshPage();
+                              setError("");
+                            }
+                          });
+                        }}
+                        className="btn btn-md btn-outline-success btn-block"
+                      >
+                        Update Status
+                      </button> */}
+                    </td>
+
                     <td>{order.mobileNumber}</td>
                     <td>{order._id}</td>
                     {/* <td>{order.user._id}</td> */}
@@ -178,4 +238,4 @@ const AllOrders = ({ match }) => {
   );
 };
 
-export default AllOrders;
+export default ManageRestaurantOrders;

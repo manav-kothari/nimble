@@ -15,7 +15,7 @@ const SuperAdminDashboard = ({ history }) => {
           <ul className="list-group">
             <Button className="list-group-item">
               <Link
-                to="/admin/restaurants"
+                to="/superadmin/restaurants"
                 className="nav-link text-light text-center bg-primary text-capitalize h5"
               >
                 Manage Restaurants

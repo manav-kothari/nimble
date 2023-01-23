@@ -86,7 +86,7 @@ const ManageRestaurantProfile = ({ match }) => {
             <div className="form-group my-4">
               <label className="text-dark">Logo:</label>
               <a
-                href="/admin/logo"
+                href=""
                 class="btn btn-secondary btn-sm active ml-3"
                 role="button"
                 aria-pressed="true"
@@ -194,7 +194,7 @@ const ManageRestaurantProfile = ({ match }) => {
       <Menu />
       <div className="p-3 page3">
         <Link
-          to="/superadmin/dashboard"
+          to="/superadmin/restaurants"
           className="btn btn-md btn-primary mb-3"
         >
           Go Back

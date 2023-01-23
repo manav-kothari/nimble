@@ -12,17 +12,23 @@ import AdminDashboard from "./restaurant/AdminDashboard";
 import ManageCategory from "./restaurant/ManageCategory";
 import ManageProducts from "./restaurant/ManageProducts";
 import ManageProfile from "./restaurant/ManageProfile";
-import ManageRestaurants from "./restaurant/ManageRestaurants";
+import ManageRestaurants from "./superadmin/ManageRestaurants";
 import UpdateCategory from "./restaurant/UpdateCategory";
 import UpdateProduct from "./restaurant/UpdateProduct";
 import AddRestaurantProduct from "./superadmin/AddRestaurantProduct";
-import AllOrders from "./superadmin/AllOrders";
+import AllOrders from "./superadmin/ManageRestaurantOrders";
 import ManageRestaurantProduct from "./superadmin/ManageRestaurantProduct";
 import ManageRestaurantProfile from "./superadmin/ManageRestaurantProfile";
 import SuperAdminDashboard from "./superadmin/SuperAdminDashboard";
 import UpdateRestaurantProduct from "./superadmin/UpdateRestaurantProduct";
 import ManageCarousel from "./restaurant/ManageCarousel";
 import ManageOrders from "./restaurant/ManageOrders";
+import ManageRestaurantOrders from "./superadmin/ManageRestaurantOrders";
+import ManageRestaurantCategory from "./superadmin/ManageRestaurantCategory";
+import UpdateRestaurantCategory from "./superadmin/UpdateRestaurantCategory";
+import AddRestaurantCategory from "./superadmin/AddRestaurantCategory";
+import AddRestaurantCarousel from "./superadmin/AddRestaurantCarousel";
+import ManageRestaurantCarousel from "./superadmin/ManageRestaurantCarousel";
 
 const WebRoutes = () => {
   return (
@@ -50,10 +56,26 @@ const WebRoutes = () => {
           element={<UpdateCategory />}
         />
         <Route path="/profile" element={<ManageProfile />} />
-        <Route path="/admin/restaurants" element={<ManageRestaurants />} />
+        <Route path="/superadmin/restaurants" element={<ManageRestaurants />} />
+        <Route
+          path="/superadmin/orders/:userId"
+          element={<ManageRestaurantOrders />}
+        />
+        <Route
+          path="/superadmin/category/:userId"
+          element={<ManageRestaurantCategory />}
+        />
+        <Route
+          path="/superadmin/category/update/:categoryId"
+          element={<UpdateRestaurantCategory />}
+        />
         <Route
           path="/superadmin/products/:userId"
           element={<ManageRestaurantProduct />}
+        />
+        <Route
+          path="/superadmin/carousel/:userId"
+          element={<ManageRestaurantCarousel />}
         />
         <Route
           path="/superadmin/profile/:userId"
@@ -64,7 +86,15 @@ const WebRoutes = () => {
           element={<AddRestaurantProduct />}
         />
         <Route
-          path="/superadmin/product/update/:productId"
+          path="/superadmin/create/category/:userId"
+          element={<AddRestaurantCategory />}
+        />
+        <Route
+          path="/superadmin/create/carousel/:userId"
+          element={<AddRestaurantCarousel />}
+        />
+        <Route
+          path="/superadmin/restaurant/:userId/product/update/:productId"
           element={<UpdateRestaurantProduct />}
         />
         <Route path="/menu/:userId" element={<App />} />
