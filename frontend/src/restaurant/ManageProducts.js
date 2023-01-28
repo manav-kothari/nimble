@@ -88,6 +88,7 @@ const ManageProducts = ({ match }) => {
                 <tr className="text-center">
                   <th>NAME</th>
                   <th>PRICE</th>
+                  <th>CATEGORY</th>
                   <th>UPDATE</th>
                   <th>DELETE</th>
                 </tr>
@@ -98,6 +99,7 @@ const ManageProducts = ({ match }) => {
                   <tr key={product._id}>
                     <td>{product.name}</td>
                     <td>₹{product.price}</td>
+                    <td>{product.category.name}</td>
                     <td>
                       <Link
                         className="btn btn-success"
