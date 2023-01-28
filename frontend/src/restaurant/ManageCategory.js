@@ -46,7 +46,6 @@ const ManageCategory = () => {
     return (
       loading && (
         <div className="alert alert-info text-center blink_me p-2">
-          <h2>TO DO!</h2>
           <h2>Loading...</h2>
         </div>
       )
@@ -88,6 +87,7 @@ const ManageCategory = () => {
           >
             <thead className="">
               <tr className="text-center">
+                <th>RANK</th>
                 <th>NAME</th>
                 <th>UPDATE</th>
                 <th>DELETE</th>
@@ -97,6 +97,7 @@ const ManageCategory = () => {
             <tbody className="text-center text-dark">
               {categories.map((category) => (
                 <tr key={category._id}>
+                  <td>{category.rank}</td>
                   <td>{category.name}</td>
                   <td>
                     <Link

@@ -97,6 +97,7 @@ const ManageRestaurantCategory = () => {
           >
             <thead className="">
               <tr className="text-center">
+                <th>RANK</th>
                 <th>NAME</th>
                 <th>UPDATE</th>
                 <th>DELETE</th>
@@ -106,6 +107,7 @@ const ManageRestaurantCategory = () => {
             <tbody className="text-center text-dark">
               {categories.map((category) => (
                 <tr key={category._id}>
+                  <td>{category.rank}</td>
                   <td>{category.name}</td>
                   <td>
                     <Link
