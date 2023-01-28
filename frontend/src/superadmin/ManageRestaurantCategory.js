@@ -46,7 +46,6 @@ const ManageRestaurantCategory = () => {
     return (
       loading && (
         <div className="alert alert-info text-center blink_me p-2">
-          <h2>TO DO!</h2>
           <h2>Loading...</h2>
         </div>
       )
