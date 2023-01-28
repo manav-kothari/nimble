@@ -6,7 +6,7 @@ const CartItem = (props) => {
   return (
     <li className="flex justify-between items-center cart-item-border py-4 px-0 my-4 mx-0">
       <div>
-        <h2 className="mt-0 mr-0 mb-2 ml-0 ">{props.name}</h2>
+        <span className="mt-0 mr-0 mb-2 ml-0 h4">{props.name}</span>
         <div className="w-[10rem] flex justify-between items-center">
           <span className="font-bold ">{price}</span>
           <span className="font-bold custom-border py-1 px-3 rounded-md ">{`x${props.amount}`}</span>
