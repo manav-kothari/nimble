@@ -264,3 +264,10 @@ footer {
   display: flex;
   align-items: center;
 }
+
+scroll{
+    width:600px; 
+    overflow-y:scroll !important;
+    position:relative;
+    height: 100vh;
+}

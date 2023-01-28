@@ -124,7 +124,11 @@ const AvailableMeals = ({ match }) => {
         {categories &&
           categories.map((cate, index) => (
             <div className="h4 font-weight-bold" key={index} value={cate._id}>
-              {cate.name}
+              <Container className="my-3">
+                <span className="text-capitalize font-weight-bold h3 my-3">
+                  {cate.name}
+                </span>
+              </Container>
               <Card>
                 <ul className="list-none m-0 p-0">
                   {meals.map((meal) => (

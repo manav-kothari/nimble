@@ -32,7 +32,7 @@ const MealItemForm = (props) => {
           id: "amount_" + props.id,
           type: "number",
           min: "1",
-          max: "5",
+          max: "20",
           step: "1",
           defaultValue: "1",
           className: "w-12 font-inherit pl-2 rounded-md custom-border",

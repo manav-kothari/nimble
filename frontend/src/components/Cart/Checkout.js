@@ -53,7 +53,7 @@ const Checkout = (props) => {
   };
 
   return (
-    <form className="my-4 mx-0 h-[19rem] overflow-auto" onSubmit={handleSubmit}>
+    <form className="my-4 mx-0 h-[19rem]  scroll" onSubmit={handleSubmit}>
       <div className="mb-2">
         <label
           className={`font-bold mb-1 block ${

@@ -59,7 +59,7 @@ const Cart = (props) => {
   };
 
   const cartItems = cartContext.items.map((cartItem) => (
-    <ul className="list-none m-0 p-0 max-h-80 overflow-auto">
+    <ul className="list-none m-0 p-0 max-h-80 ">
       <CartItem
         key={cartItem.id}
         id={cartItem.id}
@@ -94,7 +94,7 @@ const Cart = (props) => {
   );
 
   const cartModalContent = (
-    <>
+    <div style={{ height: "80vh", overflow: "auto" }}>
       {cartItems}
       <div className="flex items-center justify-between font-bold text-2xl my-4 mx-0">
         <span>Total Amount</span>
@@ -108,9 +108,8 @@ const Cart = (props) => {
           }}
         />
       )}
-
       {!isCheckout && modalActions}
-    </>
+    </div>
   );
 
   const isSubmittingModalContent = (

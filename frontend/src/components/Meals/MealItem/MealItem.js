@@ -26,8 +26,10 @@ const MealItem = (props) => {
         <div>
           <li className="flex justify-between m-4 pb-4 border-bottom">
             <div>
-              <h3 className="mt-0 mx-0 mb-1">{props.name}</h3>
-              <div className="italic">{props.description}</div>
+              <span className="mt-0 mx-0 mb-1 font-weight-bold">
+                {props.name}
+              </span>
+              <div className="italic mt-1">{props.description}</div>
             </div>
             <div>
               <div className=" font-bold text-black-550 float-right">
