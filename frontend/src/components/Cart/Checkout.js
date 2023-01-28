@@ -53,7 +53,7 @@ const Checkout = (props) => {
   };
 
   return (
-    <form className="my-4 mx-0 h-[19rem]  scroll" onSubmit={handleSubmit}>
+    <form className="my-4 mx-0 h-[19rem]" onSubmit={handleSubmit}>
       <div className="mb-2">
         <label
           className={`font-bold mb-1 block ${
@@ -115,16 +115,18 @@ const Checkout = (props) => {
       </div>
       <div className="mb-2">
         <label
-          className={`font-bold mb-1 block ${
+          for="large-input"
+          className={`font-bold mb-1 block  ${
             formInputsValidity.description ? "" : "text-red-450"
           }`}
           htmlFor="description"
         >
           Instructions
         </label>
-        <input
-          className={`font-inherit custom-border rounded w-80 max-w-full `}
+        <textarea
+          className={`font-inherit custom-border rounded w-80 max-w-full p-2`}
           type="text"
+          rows="4"
           id="description"
           ref={descriptionInputRef}
         />
