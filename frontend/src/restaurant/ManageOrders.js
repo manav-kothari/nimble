@@ -161,7 +161,7 @@ const ManageOrders = ({ match }) => {
                           <option>Select Status</option>
                           <option>Recieved</option>
                           <option>Preparing</option>
-                          <option>Devlivered</option>
+                          <option>Delivered</option>
                           <option>Paid</option>
                         </select>
                       </div>
