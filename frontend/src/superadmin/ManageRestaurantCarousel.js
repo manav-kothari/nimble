@@ -81,7 +81,7 @@ const ManageRestaurantCarousel = () => {
             >
               Add Carousel
             </Link>
-            <div className="page">
+            <div className="">
               <div className="container">
                 <h3 className="text-dark text-center p-2">
                   All Carousels Images:

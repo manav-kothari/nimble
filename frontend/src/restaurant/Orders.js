@@ -46,7 +46,7 @@ const Orders = ({ match }) => {
 
   const loadingMessage = () => {
     return (
-      <div className="page3 page">
+      <div className="page3 ">
         <div className="alert alert-info text-center blink_me p-4 my-4">
           <h2 className="mt-4">Loading...</h2>
         </div>
@@ -75,7 +75,7 @@ const Orders = ({ match }) => {
       ) : error ? (
         errorMessage()
       ) : (
-        <div className="page page3">
+        <div className=" page3">
           <div className="p-3">
             <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
               Go Back

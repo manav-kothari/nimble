@@ -67,7 +67,7 @@ const ManageCategory = () => {
   return (
     <>
       <Menu />
-      <div className="page page3">
+      <div className="page3">
         <div className="p-3">
           <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
             Go Back

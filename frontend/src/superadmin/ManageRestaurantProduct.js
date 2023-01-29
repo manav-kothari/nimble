@@ -71,7 +71,7 @@ const ManageRestaurantProduct = () => {
       ) : (
         <>
           <Menu />
-          <div className="p-3 page3 page">
+          <div className="p-3 page3 ">
             <Link
               to="/superadmin/restaurants"
               className="btn btn-md btn-primary mb-3"

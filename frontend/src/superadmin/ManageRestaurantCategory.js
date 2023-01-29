@@ -67,7 +67,7 @@ const ManageRestaurantCategory = () => {
   return (
     <>
       <Menu />
-      <div className="page page3">
+      <div className=" page3">
         <div className="p-3">
           <Link
             to="/superadmin/restaurants"
