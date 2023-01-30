@@ -87,7 +87,7 @@ const ManageRestaurantOrders = ({ match }) => {
       ) : error ? (
         errorMessage()
       ) : (
-        <div className=" page3">
+        <div className="pagem page3">
           <div className="p-3">
             <Link
               to="/superadmin/restaurants"

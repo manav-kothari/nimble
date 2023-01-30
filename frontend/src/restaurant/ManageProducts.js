@@ -69,7 +69,7 @@ const ManageProducts = ({ match }) => {
       ) : (
         <>
           <Menu />
-          <div className="p-3 page3 ">
+          <div className="p-3 page3 pagem">
             <Link to="/admin/dashboard" className="btn btn-md btn-primary mb-3">
               Go Back
             </Link>

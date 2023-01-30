@@ -68,7 +68,7 @@ const ManageRestaurantCarousel = () => {
         errorMessage()
       ) : (
         <>
-          <div className="p-3 page3">
+          <div className="p-3 page3 pagem">
             <Link
               to="/superadmin/restaurants"
               className="btn btn-md btn-primary mb-3"

@@ -265,9 +265,10 @@ footer {
   align-items: center;
 }
 
-scroll{
-    width:600px; 
-    overflow-y:scroll !important;
-    position:relative;
-    height: 100vh;
+.pagem{
+  margin-bottom: 50vh;
+}
+
+.center {
+  text-align: center;
 }

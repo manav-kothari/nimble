@@ -87,7 +87,7 @@ const ManageOrders = ({ match }) => {
       ) : error ? (
         errorMessage()
       ) : (
-        <div className=" page3">
+        <div className="pagem page3">
           <div className="p-3">
             <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
               Go Back
