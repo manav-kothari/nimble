@@ -88,6 +88,9 @@ const Checkout = (props) => {
           }`}
           type="numeric"
           id="number"
+          maxlength="10"
+          pattern="\d{10}"
+          title="Please enter exactly 10 digits"
           ref={numberInputRef}
         />
         {!formInputsValidity.number && <p>Please enter a valid number!</p>}
