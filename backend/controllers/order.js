@@ -65,9 +65,14 @@ exports.getAllOrders = (req, res) => {
         userId: req.query.userId,
       }
     : {};
+  const tableNo = req.query.tableno
+    ? {
+        tableNumber: req.query.tableno,
+      }
+    : {};
   const page = Number(req.query.pageNumber) || 1;
   const pageSize = 15;
-  Order.find({ ...userId })
+  Order.find({ ...userId, ...tableNo })
     .sort([["_id", "-1"]])
     .populate("user", "_id name")
     .exec(function (

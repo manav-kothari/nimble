@@ -46,6 +46,10 @@ const WebRoutes = () => {
         <Route path="/admin/create/carousel" element={<AddCarousel />} />
         <Route path="/admin/products" element={<ManageProducts />} />
         <Route path="/admin/orders" element={<ManageOrders />} />
+        <Route
+          path="/admin/orders/filter/:tableno"
+          element={<ManageOrders />}
+        />
         <Route path="/admin/carousel" element={<ManageCarousel />} />
         <Route
           path="/admin/product/update/:productId"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Table, Pagination } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { Table, Pagination, Dropdown, Row, Col } from "react-bootstrap";
 import {
   getAllOrders,
   isAuthenticated,
@@ -23,9 +23,28 @@ const ManageOrders = ({ match }) => {
   const pageNumber = 1;
   const { user, token } = isAuthenticated();
   const userId = user._id;
+  const { tableno } = useParams();
 
-  const preload = (pageNumber) => {
-    getAllOrders(userId, token, pageNumber).then((data) => {
+  const tables = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+  ];
+
+  const preload = (pageNumber, tableno) => {
+    getAllOrders(userId, token, pageNumber, tableno).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -41,14 +60,14 @@ const ManageOrders = ({ match }) => {
 
   useEffect(() => {
     setLoading(true);
-    preload(pageNumber);
+    preload(pageNumber, tableno);
     const interval = setInterval(() => {
       refreshPage();
     }, MINUTE_MS);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line
-  }, [pageNumber]);
+  }, [pageNumber, tableno]);
 
   const onSubmit = (event, orderId, status, userId) => {};
 
@@ -89,13 +108,44 @@ const ManageOrders = ({ match }) => {
       ) : (
         <div className="pagem page3">
           <div className="p-3">
-            <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-              Go Back
-            </Link>
+            <Row>
+              <Col className="mb-3">
+                <Link
+                  to="/admin/dashboard"
+                  className="btn btn-md btn-dark mb-3"
+                >
+                  Go Back
+                </Link>
+              </Col>
+              <Col className="mb-3">
+                <Dropdown className="float-right">
+                  <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                    Filter by Table
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {tables.map((table, index) => (
+                      <Dropdown.Item
+                        href={`/admin/orders/filter/${table}`}
+                        className=" font-weight-bold"
+                        key={index}
+                        value={table}
+                      >
+                        {table}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
             {/* <button onClick={refreshPage}>Refresh</button> */}
             <div className="container">
               <h3 className="text-dark text-center p-2 headingalt">
-                All Orders :
+                All Orders :{" "}
+                {tableno && (
+                  <h3 className="text-dark text-center p-2 text-capitalize">
+                    from Table No. {tableno}
+                  </h3>
+                )}
               </h3>
             </div>
             <Table
@@ -104,7 +154,7 @@ const ManageOrders = ({ match }) => {
               responsive
               hover
               variant="light"
-              className="table-sm text-dark"
+              className="table-sm text-dark table"
             >
               <thead className="">
                 <tr className="text-center">
@@ -154,7 +204,7 @@ const ManageOrders = ({ match }) => {
                       <div className="form-group my-2">
                         <select
                           onChange={handleChange}
-                          value={status}
+                          // value={status}
                           className="form-control"
                           placeholder="Status"
                         >
@@ -186,7 +236,7 @@ const ManageOrders = ({ match }) => {
                         }}
                         className="btn btn-md btn-outline-success btn-block"
                       >
-                        Update Status
+                        Update
                       </button>
                     </td>
 

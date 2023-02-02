@@ -73,7 +73,7 @@ body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  overflow-x: hidden;
+
 }
 
 footer {
@@ -271,4 +271,10 @@ footer {
 
 .center {
   text-align: center;
+}
+
+.table{
+  overflow: auto;
+display: block;
+table-layout: auto;
 }
