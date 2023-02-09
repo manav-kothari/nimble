@@ -266,7 +266,7 @@ footer {
 }
 
 .pagem{
-  margin-bottom: 50vh;
+  margin-bottom: 60vh;
 }
 
 .center {
@@ -275,6 +275,5 @@ footer {
 
 .table{
   overflow: auto;
-display: block;
 table-layout: auto;
 }
