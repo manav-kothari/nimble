@@ -23,6 +23,7 @@ const ManageOrders = ({ match }) => {
   const pageNumber = 1;
   const { user, token } = isAuthenticated();
   const userId = user._id;
+  const { urlstatus } = useParams();
   const { tableno } = useParams();
 
   const tables = [
@@ -43,8 +44,11 @@ const ManageOrders = ({ match }) => {
     "15",
   ];
 
-  const preload = (pageNumber, tableno) => {
-    getAllOrders(userId, token, pageNumber, tableno).then((data) => {
+  const statuss = ["Recieved", "Preparing", "Delivered", "Paid"];
+
+  const preload = (pageNumber, tableno, urlstatus) => {
+    console.log("Status " + urlstatus);
+    getAllOrders(userId, token, pageNumber, tableno, urlstatus).then((data) => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -60,14 +64,14 @@ const ManageOrders = ({ match }) => {
 
   useEffect(() => {
     setLoading(true);
-    preload(pageNumber, tableno);
+    preload(pageNumber, tableno, urlstatus);
     const interval = setInterval(() => {
       refreshPage();
     }, MINUTE_MS);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line
-  }, [pageNumber, tableno]);
+  }, [pageNumber, tableno, urlstatus]);
 
   const onSubmit = (event, orderId, status, userId) => {};
 
@@ -123,14 +127,41 @@ const ManageOrders = ({ match }) => {
                     Filter by Table
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
+                    <Dropdown.Item
+                      href={`/admin/orders`}
+                      className=" font-weight-bold"
+                    >
+                      All Orders
+                    </Dropdown.Item>
                     {tables.map((table, index) => (
                       <Dropdown.Item
-                        href={`/admin/orders/filter/${table}`}
+                        href={`/admin/orders/filter/table/${table}`}
                         className=" font-weight-bold"
                         key={index}
                         value={table}
                       >
                         {table}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="mb-3">
+                <Dropdown className="float-right">
+                  <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                    Filter by Status
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {statuss.map((status, index) => (
+                      <Dropdown.Item
+                        href={`/admin/orders/filter/status/${status}`}
+                        className=" font-weight-bold"
+                        key={index}
+                        value={status}
+                      >
+                        {status}
                       </Dropdown.Item>
                     ))}
                   </Dropdown.Menu>

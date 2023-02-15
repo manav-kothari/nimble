@@ -221,10 +221,19 @@ export const getUsers = () => {
 // };
 /****** Orders ******/
 
-export const getAllOrders = (userId, token, pageNumber, tableno = "") => {
-  return fetch(`${API}/order/all?userId=${userId}&tableno=${tableno}`, {
-    method: "GET",
-  })
+export const getAllOrders = (
+  userId,
+  token,
+  pageNumber,
+  tableno = "",
+  urlstatus = ""
+) => {
+  return fetch(
+    `${API}/order/all?userId=${userId}&tableno=${tableno}&status=${urlstatus}`,
+    {
+      method: "GET",
+    }
+  )
     .then((response) => {
       return response.json();
     })

@@ -47,7 +47,11 @@ const WebRoutes = () => {
         <Route path="/admin/products" element={<ManageProducts />} />
         <Route path="/admin/orders" element={<ManageOrders />} />
         <Route
-          path="/admin/orders/filter/:tableno"
+          path="/admin/orders/filter/table/:tableno"
+          element={<ManageOrders />}
+        />
+        <Route
+          path="/admin/orders/filter/status/:urlstatus"
           element={<ManageOrders />}
         />
         <Route path="/admin/carousel" element={<ManageCarousel />} />
