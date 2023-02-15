@@ -4,7 +4,7 @@ import Menu from "./components/Menu";
 
 const HomePage = () => {
   const performRedirect = () => {
-    return <Navigate to="/admin/dashboard" />;
+    return <Navigate to="/signin" />;
   };
   return (
     <>
